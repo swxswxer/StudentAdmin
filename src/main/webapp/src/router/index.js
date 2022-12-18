@@ -3,6 +3,8 @@ import Vue from "vue";
 
 Vue.use(VueRouter)
 
+const Login = () => import('components/LoginPage')
+const HomePage = () => import('components/home/HomePage')
 
 
 const routes = [
@@ -12,11 +14,11 @@ const routes = [
     },
     {
         path: '/login',
-        component: () => import('components/LoginPage')
+        component: Login
     },
     {
         path: '/home',
-        component: () => import('components/home/HomePage')
+        component: HomePage
     }
 ]
 
