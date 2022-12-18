@@ -19,7 +19,8 @@ public class LoginServlet extends BaseServlet {
         User user = userService.login(username, password);
         if(user!=null){
             String contextPath = req.getContextPath();
-            resp.sendRedirect(contextPath + "/selectAllServlet");
+//            resp.sendRedirect(contextPath + "/selectAllServlet");
+
         }
     }
 
@@ -31,15 +32,7 @@ public class LoginServlet extends BaseServlet {
         user.setUsername(username);
         user.setPassword(password);
         boolean flag = userService.register(user);
-        if(flag){
-            //跳转登陆页面
-            //需要提示
-            req.getRequestDispatcher("/login.jsp").forward(req,resp);
-        }else {
-            //注册失败 跳转注册页面
-            // 需要提示
-            req.getRequestDispatcher("/register.jsp").forward(req,resp);
-        }
+
     }
 
 

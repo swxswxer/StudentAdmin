@@ -3,10 +3,10 @@ import {Message} from "element-ui";
 
 export function request(config) {
     const instance = axios.create({
-        // baseURL: 'http://127.0.0.1:64325',
+        // baseURL: 'http://192.168.31.199:8080',
         baseURL: '',
         timeout: 20000,
-        method: 'get'
+        method: 'get',
     })
 
     instance.interceptors.request.use(config => {
