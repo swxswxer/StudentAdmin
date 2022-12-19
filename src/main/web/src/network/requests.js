@@ -1,10 +1,8 @@
 import axios from 'axios'
-import {Message} from "element-ui";
 
 export function request(config) {
     const instance = axios.create({
-        // baseURL: 'http://192.168.31.199:8080',
-        baseURL: '',
+        baseURL: process.env.VUE_APP_BASEURL,
         timeout: 20000,
         method: 'get',
     })
@@ -19,7 +17,6 @@ export function request(config) {
         return res.data
     }, err => {
         console.log(err);
-        Message.error(err)
         return err
     })
 
