@@ -1,4 +1,5 @@
 import {request} from "./requests"
+import {Message} from "element-ui";
 
 export function login(username, password) {
   return request({
@@ -11,5 +12,12 @@ export function login(username, password) {
     headers: {
       'Content-Type': 'application/form-data',
     },
+  }).then(res => {
+    if (res.success === true) {
+      Message.success(res.message)
+    } else {
+      Message.error(res.message)
+    }
+    return res
   })
 }

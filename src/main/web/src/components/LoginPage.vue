@@ -1,19 +1,23 @@
 <template>
-  <div class="main">
-    <h1>学生信息管理系统</h1>
-    <div class="inputModule">
-      <el-input class="username" placeholder="Please input user Name" v-model="usrInput"></el-input>
-      <el-input class="password" placeholder="Please input password" v-model="pwdInput" show-password></el-input>
+  <div style="width: 100%; height: 100%">
+    <div id="main" class="main">
+      <h1>学生信息管理系统</h1>
+      <div class="inputModule">
+        <el-input class="username" placeholder="Please input user Name" v-model="usrInput"></el-input>
+        <el-input class="password" placeholder="Please input password" v-model="pwdInput" show-password></el-input>
+      </div>
+      <div class="bottom">
+        <el-button type="success" size="small" @click="loginFunc">登录</el-button>
+        <el-button type="primary" size="small" @click="registerFunc">注册</el-button>
+      </div>
+      <br/>
     </div>
-    <div class="bottom">
-      <el-button type="success" size="small" @click="loginFunc">登录</el-button>
-      <el-button type="primary" size="small" @click="registerFunc">注册</el-button>
-    </div>
-    <br/>
   </div>
 </template>
 
 <script>
+import {login} from "@/network/login";
+
 export default {
   name: "LoginPage",
   data() {
@@ -25,6 +29,16 @@ export default {
   methods: {
     loginFunc() {
       console.log("login")
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
+      login(this.usrInput, this.pwdInput).then(res => {
+        console.log(res);
+        loading.close()
+      })
     },
     registerFunc() {
       console.log("register")
