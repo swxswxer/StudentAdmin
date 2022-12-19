@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {Message} from "element-ui";
 
 export function request(config) {
     const instance = axios.create({
@@ -18,7 +17,6 @@ export function request(config) {
         return res.data
     }, err => {
         console.log(err);
-        Message.error(err)
         return err
     })
 
