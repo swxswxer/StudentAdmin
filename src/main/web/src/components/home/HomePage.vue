@@ -25,6 +25,7 @@
           stripe
           highlight-current-row
           style="width: 100%"
+          :loading="loading"
           :data="tableData"
           :height="tableHeight">
         <el-table-column
@@ -81,6 +82,7 @@ export default {
   name: "HomePage",
   data() {
     return {
+      loading: false,
       activeIndex: '/student_info',
       tableHeight: 0,
       tableData: [
@@ -124,8 +126,11 @@ export default {
   },
   created() {
     this.tableHeight = window.innerHeight;
+
+    this.loading = true
     getStudentInfo().then(res => {
       this.tableData = res
+      this.loading = false
     })
   },
   methods: {
