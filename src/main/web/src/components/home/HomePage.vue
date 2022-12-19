@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container style="height: 100%">
     <el-aside style="width: 250px">
       <el-menu
           :default-active="activeIndex"
@@ -20,7 +20,7 @@
         </el-menu-item>
       </el-menu>
     </el-aside>
-    <el-main class="main">
+    <el-main class="homeMain">
       <el-table
           stripe
           highlight-current-row
@@ -140,6 +140,11 @@ export default {
 </script>
 
 <style scoped>
+.homeMain {
+  width: 100%;
+  height: 100%;
+}
+
 .title {
   color: lightblue;
   font-size: 30px;

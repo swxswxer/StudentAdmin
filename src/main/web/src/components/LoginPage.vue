@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {login} from "@/network/login";
+// import {login} from "@/network/login";
 import {Message} from "element-ui";
 
 export default {
@@ -39,10 +39,18 @@ export default {
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         });
-        login(this.usrInput, this.pwdInput).then(res => {
-          console.log(res);
-          loading.close()
-        })
+
+        loading.close()
+        this.$router.push('/home').catch(()=>{})
+        this.$router.replace('/home')
+        // login(this.usrInput, this.pwdInput).then(res => {
+        //   console.log(res);
+        //   loading.close()
+        //   if (res.success === true) {
+        //     this.$router.push('/rent').catch(()=>{})
+        //     this.$router.replace('/rent')
+        //   }
+        // })
       }
     },
     registerFunc() {
