@@ -5,7 +5,7 @@ import {
     Button, Input, Container,
     Aside, Main, Menu, Submenu,
     MenuItemGroup, MenuItem, Table,
-    TableColumn, Tag
+    TableColumn, Tag, Loading
 } from "element-ui"
 
 
@@ -22,6 +22,7 @@ Vue.use(MenuItem)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Tag)
+Vue.use(Loading)
 
 new Vue({
     router,
