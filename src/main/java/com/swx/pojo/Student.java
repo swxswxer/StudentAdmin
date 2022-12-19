@@ -1,5 +1,9 @@
 package com.swx.pojo;
 
+import com.alibaba.fastjson.JSON;
+
+import java.util.HashMap;
+
 public class Student {
 
     private int studentid;
@@ -73,3 +77,4 @@ public class Student {
         this.major = major;
     }
 }
+

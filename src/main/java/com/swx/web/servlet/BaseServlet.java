@@ -23,7 +23,7 @@ public class BaseServlet extends HttpServlet {
         //获取brandservlet的字节码对象
         Class<? extends BaseServlet> cls = this.getClass();
         System.out.println(req.getRequestURI());
-        System.out.print(req.getMethod());
+        System.out.println(req.getMethod());
         //获取方法的method对象
         try {
             Method method = cls.getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);

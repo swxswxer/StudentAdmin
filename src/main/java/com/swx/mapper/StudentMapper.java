@@ -21,4 +21,7 @@ public interface StudentMapper {
     void deleteById(int id);
 
     void update(Student student);
+
+    @Select("select * from student where studentid = #{studentid}")
+    Student selectById(int studentid);
 }

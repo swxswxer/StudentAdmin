@@ -26,12 +26,12 @@ public class StudentServiceimpl implements StudentService {
     }
 
     public void add(Student student) {
-
         //获取sqlSession对象
         SqlSession sqlSession = factory.openSession();
         //获取brand mapper
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         //执行方法
+
         mapper.add(student);
         sqlSession.commit();
         sqlSession.close();
@@ -60,4 +60,18 @@ public class StudentServiceimpl implements StudentService {
         sqlSession.commit();
         sqlSession.close();
     }
+
+    public Student selectById(int studentid) {
+        //获取sqlSession对象
+        SqlSession sqlSession = factory.openSession();
+        //获取brand mapper
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        //执行方法
+        Student student = mapper.selectById(studentid);
+        sqlSession.commit();
+        sqlSession.close();
+        return student;
+    }
+
+
 }
