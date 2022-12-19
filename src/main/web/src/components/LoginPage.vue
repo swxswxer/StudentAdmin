@@ -17,6 +17,7 @@
 
 <script>
 import {login} from "@/network/login";
+import {Message} from "element-ui";
 
 export default {
   name: "LoginPage",
@@ -29,16 +30,20 @@ export default {
   methods: {
     loginFunc() {
       console.log("login")
-      const loading = this.$loading({
-        lock: true,
-        text: 'Loading',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.7)'
-      });
-      login(this.usrInput, this.pwdInput).then(res => {
-        console.log(res);
-        loading.close()
-      })
+      if (this.usrInput === '' || this.pwdInput === '') {
+        Message.warning("请输入用户名或密码")
+      } else {
+        const loading = this.$loading({
+          lock: true,
+          text: 'Loading',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
+        login(this.usrInput, this.pwdInput).then(res => {
+          console.log(res);
+          loading.close()
+        })
+      }
     },
     registerFunc() {
       console.log("register")
