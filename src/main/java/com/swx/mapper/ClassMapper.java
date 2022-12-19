@@ -13,7 +13,7 @@ public interface ClassMapper {
 
 
     @Insert("insert into class values(#{classname},#{department})")
-    void add(Student student);
+    void add(Class class1);
 
 
     @Delete("delete from class where class=#{id}")

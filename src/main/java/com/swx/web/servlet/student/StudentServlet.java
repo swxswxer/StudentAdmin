@@ -1,4 +1,4 @@
-package com.swx.web.servlet;
+package com.swx.web.servlet.student;
 
 import com.alibaba.fastjson.JSON;
 import com.sun.org.apache.xpath.internal.functions.FuncFalse;
@@ -7,6 +7,7 @@ import com.swx.pojo.StudentUtil;
 import com.swx.service.StudentService;
 import com.swx.service.impl.StudentServiceimpl;
 import com.swx.util.ResponseMsgUtil;
+import com.swx.web.servlet.BaseServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -98,6 +99,67 @@ public class StudentServlet extends BaseServlet {
         resp.getWriter().write(responseMsgUtil.getString());
 
     }
+
+    public void selectByName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ResponseMsgUtil responseMsgUtil = new ResponseMsgUtil();
+        String name = req.getParameter("name");
+        //1 掉哦你service查询
+        List<Student> students = studentService.selectByName(name);
+//
+//        if(students==null){
+//            responseMsgUtil.add("success",false);
+//            responseMsgUtil.add("message","查找不到姓名为"+name+"的学生");
+//        }else {
+//            responseMsgUtil.add("success",true);
+//        }
+        responseMsgUtil.add("data",students);
+        responseMsgUtil.add("success",true);
+
+        String jsonString = JSON.toJSONString(responseMsgUtil.getString());
+        //写数据
+        resp.setContentType("text/json;charset=utf-8");
+        resp.getWriter().write(jsonString);
+    }
+
+    public void selectByMajor(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ResponseMsgUtil responseMsgUtil = new ResponseMsgUtil();
+        String major = req.getParameter("major");
+        //1 掉哦你service查询
+        List<Student> students = studentService.selectByMajor(major);
+//
+//        if(students==null){
+//            responseMsgUtil.add("success",false);
+//            responseMsgUtil.add("message","查找不到姓名为"+name+"的学生");
+//        }else {
+//            responseMsgUtil.add("success",true);
+//        }
+        responseMsgUtil.add("data",students);
+        responseMsgUtil.add("success",true);
+
+        String jsonString = JSON.toJSONString(responseMsgUtil.getString());
+        //写数据
+        resp.setContentType("text/json;charset=utf-8");
+        resp.getWriter().write(jsonString);
+    }
+
+    public void selectById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        ResponseMsgUtil responseMsgUtil = new ResponseMsgUtil();
+
+        String id = req.getParameter("id");
+        Student student = studentService.selectById(Integer.parseInt(id));
+        if(student!=null){
+           responseMsgUtil.add("data",student);
+           responseMsgUtil.add("success",true);
+        }else {
+            responseMsgUtil.add("success",false);
+            responseMsgUtil.add("message","找不到该用户");
+        }
+        String jsonString = JSON.toJSONString(responseMsgUtil.getString());
+        //写数据
+        resp.setContentType("text/json;charset=utf-8");
+        resp.getWriter().write(jsonString);
+    }
+
 
 
 }

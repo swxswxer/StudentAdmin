@@ -15,4 +15,7 @@ public interface StudentService {
     void update(Student student);
 
     Student selectById(int studentid);
+
+    List<Student> selectByName(String name);
+    List<Student> selectByMajor(String major);
 }

@@ -24,4 +24,10 @@ public interface StudentMapper {
 
     @Select("select * from student where studentid = #{studentid}")
     Student selectById(int studentid);
+
+    @Select("select * from student where name = #{name}")
+    List<Student> selectByName(String name);
+
+    @Select("select * from student where major = #{major}")
+    List<Student> selectByMajor(String Major);
 }

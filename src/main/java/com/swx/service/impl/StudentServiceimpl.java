@@ -73,5 +73,29 @@ public class StudentServiceimpl implements StudentService {
         return student;
     }
 
+    public List<Student> selectByName(String name) {
+        SqlSession sqlSession = factory.openSession();
+        //获取student mapper
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        //执行方法
+        List<Student> students = mapper.selectByName(name);
+        //释放资源
+        sqlSession.close();
+
+        return students;
+    }
+
+    public List<Student> selectByMajor(String major) {
+        SqlSession sqlSession = factory.openSession();
+        //获取student mapper
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        //执行方法
+        List<Student> students = mapper.selectByMajor(major);
+        //释放资源
+        sqlSession.close();
+
+        return students;
+    }
+
 
 }
