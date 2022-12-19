@@ -3,7 +3,7 @@ import {request} from "./requests"
 
 export function getStudentInfo() {
     return request({
-        url: '/student/selectAll',
+        url: process.env.VUE_APP_STUDENT_QUERY,
         method: 'get'
     })
 }

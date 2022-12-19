@@ -3,8 +3,7 @@ import {Message} from "element-ui";
 
 export function request(config) {
     const instance = axios.create({
-        // baseURL: 'http://192.168.31.199:8080',
-        baseURL: '',
+        baseURL: process.env.VUE_APP_BASEURL,
         timeout: 20000,
         method: 'get',
     })
