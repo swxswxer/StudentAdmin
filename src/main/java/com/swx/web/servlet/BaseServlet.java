@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
 public class BaseServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         //获取请求路径
         String uri = req.getRequestURI();// /brand-case/brand/selectAll
         //获取最后一段路径 方法名
@@ -21,7 +22,8 @@ public class BaseServlet extends HttpServlet {
         //执行方法
         //获取brandservlet的字节码对象
         Class<? extends BaseServlet> cls = this.getClass();
-
+        System.out.println(req.getRequestURI());
+        System.out.print(req.getMethod());
         //获取方法的method对象
         try {
             Method method = cls.getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
