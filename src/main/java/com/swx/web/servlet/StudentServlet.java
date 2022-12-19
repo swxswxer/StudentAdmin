@@ -26,6 +26,7 @@ public class StudentServlet extends BaseServlet {
         msg.put("status",true);
         //转为json
         String jsonString = JSON.toJSONString(msg);
+//        System.out.println("12313121231312312312313");
         //写数据
         resp.setContentType("text/json;charset=utf-8");
         resp.getWriter().write(jsonString);
