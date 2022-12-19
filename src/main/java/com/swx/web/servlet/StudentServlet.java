@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-@WebServlet("/student/*")
+@WebServlet("/stu-admin/*")
 public class StudentServlet extends BaseServlet {
     private StudentService studentService = new StudentServiceimpl();
     public void selectAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
