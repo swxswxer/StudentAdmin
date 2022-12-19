@@ -85,43 +85,7 @@ export default {
       loading: false,
       activeIndex: '/student_info',
       tableHeight: 0,
-      tableData: [
-        {
-          'studentid': '123456',
-          'name': 'why',
-          'age': 22,
-          'sex': 'male',
-          'major': '软件工程'
-        },
-        {
-          'studentid': '123456',
-          'name': 'why',
-          'age': 22,
-          'sex': 'male',
-          'major': '软件工程'
-        },
-        {
-          'studentid': '123456',
-          'name': 'why',
-          'age': 22,
-          'sex': 'male',
-          'major': '软件工程'
-        },
-        {
-          'studentid': '123456',
-          'name': 'why',
-          'age': 22,
-          'sex': 'male',
-          'major': '软件工程'
-        },
-        {
-          'studentid': '123456',
-          'name': 'why',
-          'age': 22,
-          'sex': 'male',
-          'major': '软件工程'
-        },
-      ],
+      tableData: [],
     }
   },
   created() {
@@ -129,7 +93,9 @@ export default {
 
     this.loading = true
     getStudentInfo().then(res => {
-      this.tableData = res
+      if (res.status === true) {
+        this.tableData = res.data
+      }
       this.loading = false
     })
   },

@@ -10,7 +10,7 @@ export function login(username, password) {
       password: password
     },
     headers: {
-      'Content-Type': 'application/x-www-form-data-urlencoded',
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
   }).then(res => {
     if (res.success === true) {
