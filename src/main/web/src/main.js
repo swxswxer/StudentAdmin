@@ -6,7 +6,7 @@ import {
     Aside, Main, Header, Menu,
     Submenu, MenuItemGroup, MenuItem,
     Table, TableColumn, Tag, Loading,
-    Row, Col, Avatar
+    Row, Col, Avatar, Descriptions, DescriptionsItem
 } from "element-ui"
 
 
@@ -28,6 +28,8 @@ Vue.use(Loading)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Avatar)
+Vue.use(Descriptions)
+Vue.use(DescriptionsItem)
 
 new Vue({
     router,

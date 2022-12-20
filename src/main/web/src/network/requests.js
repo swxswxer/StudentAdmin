@@ -5,6 +5,9 @@ export function request(config) {
         baseURL: process.env.VUE_APP_BASEURL,
         timeout: 20000,
         method: 'get',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
     })
 
     instance.interceptors.request.use(config => {

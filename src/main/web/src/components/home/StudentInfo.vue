@@ -19,9 +19,9 @@
           highlight-current-row
           style="width: 100%"
           :show-header="showHeader"
-          :loading="tableLoading"
           :data="tableData"
-          :height="tableHeight">
+          :height="tableHeight"
+          v-loading="tableLoading">
         <el-table-column type="expand">
           <template slot-scope="scope">
             <student-info-expand :stu-name="scope.row.name" :stu-id="scope.row.studentid"/>
@@ -64,6 +64,7 @@
             <el-button
                 size="mini"
                 type="danger"
+                :loading="scope.row.loading"
                 @click="handleDelete(scope.$index, scope.row)">删除
             </el-button>
           </template>
@@ -74,8 +75,9 @@
 </template>
 
 <script>
-import {getStudentInfo} from "@/network/student";
+import {delectStudentById, getStudentInfo, getStudentInfoByMajor, getStudentInfoByName} from "@/network/student";
 import StudentInfoExpand from "@/components/home/StudentInfoExpand";
+import {Message} from "element-ui";
 
 
 export default {
@@ -98,7 +100,21 @@ export default {
           age: 18,
           sex: 'male',
           major: '软件工程'
-        }
+        },
+        {
+          studentid: 123456,
+          name: 'yong',
+          age: 18,
+          sex: 'male',
+          major: '软件工程'
+        },
+        {
+          studentid: 123456,
+          name: 'yong',
+          age: 18,
+          sex: 'male',
+          major: '软件工程'
+        },
       ],
     }
   },
@@ -112,22 +128,55 @@ export default {
     getStudentInfo().then(res => {
       if (res.status === true) {
         this.tableData = res.data
+        this.addLoadingToResp()
       }
       this.showHeader = this.tableData.length !== 0;
       this.tableLoading = false
     })
   },
   methods: {
+    addLoadingToResp() {
+      for (let idx = 0; idx < this.tableData.length; idx++) {
+        this.$set(this.tableData[idx], 'loading', false)
+      }
+    },
     handleEdit(index, row) {
       console.log("edit index: " + index + " row: " + row)
     },
     handleDelete(index, row) {
-      console.log("edit index: " + index + " row: " + row)
+      console.log("delete index: " + index)
+      row.loading = true
+      delectStudentById(row.studentid).then(res => {
+        if (res.success !== true) {
+          Message.warning(res.message)
+        } else {
+          Message.success("删除成功")
+        }
+      })
     },
     searchClick() {
       console.log("name: " + this.nameInput + " major: " + this.majorInput)
       this.searchLoading = true
-      this.searchLoading = false
+
+      if (this.nameInput !== '') {
+        getStudentInfoByName(this.nameInput).then(res => {
+          if (res.status === true) {
+            this.tableData = res.data
+            this.addLoadingToResp()
+          }
+          this.showHeader = this.tableData.length !== 0;
+          this.searchLoading = false
+        })
+      } else if (this.majorInput !== '') {
+        getStudentInfoByMajor(this.majorInput).then(res => {
+          if (res.status === true) {
+            this.tableData = res.data
+            this.addLoadingToResp()
+          }
+          this.showHeader = this.tableData.length !== 0;
+          this.searchLoading = false
+        })
+      }
     }
   }
 }
