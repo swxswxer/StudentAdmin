@@ -104,18 +104,15 @@ public class StudentServlet extends BaseServlet {
         ResponseMsgUtil responseMsgUtil = new ResponseMsgUtil();
         String name = req.getParameter("name");
         //1 掉哦你service查询
+        System.out.println(name);
         List<Student> students = studentService.selectByName(name);
-//
-//        if(students==null){
-//            responseMsgUtil.add("success",false);
-//            responseMsgUtil.add("message","查找不到姓名为"+name+"的学生");
-//        }else {
-//            responseMsgUtil.add("success",true);
-//        }
-        responseMsgUtil.add("data",students);
-        responseMsgUtil.add("success",true);
 
-        String jsonString = JSON.toJSONString(responseMsgUtil.getString());
+        System.out.println(students);
+        responseMsgUtil.add("data",students);
+        responseMsgUtil.add("status",true);
+
+        String jsonString = responseMsgUtil.getString();
+        System.out.println(jsonString);
         //写数据
         resp.setContentType("text/json;charset=utf-8");
         resp.getWriter().write(jsonString);
@@ -134,9 +131,9 @@ public class StudentServlet extends BaseServlet {
 //            responseMsgUtil.add("success",true);
 //        }
         responseMsgUtil.add("data",students);
-        responseMsgUtil.add("success",true);
+        responseMsgUtil.add("status",true);
 
-        String jsonString = JSON.toJSONString(responseMsgUtil.getString());
+        String jsonString = responseMsgUtil.getString();
         //写数据
         resp.setContentType("text/json;charset=utf-8");
         resp.getWriter().write(jsonString);
@@ -154,7 +151,7 @@ public class StudentServlet extends BaseServlet {
             responseMsgUtil.add("success",false);
             responseMsgUtil.add("message","找不到该用户");
         }
-        String jsonString = JSON.toJSONString(responseMsgUtil.getString());
+        String jsonString = responseMsgUtil.getString();
         //写数据
         resp.setContentType("text/json;charset=utf-8");
         resp.getWriter().write(jsonString);
