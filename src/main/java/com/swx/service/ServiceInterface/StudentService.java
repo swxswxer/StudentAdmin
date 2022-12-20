@@ -1,5 +1,6 @@
-package com.swx.service;
+package com.swx.service.ServiceInterface;
 
+import com.swx.pojo.Clazz;
 import com.swx.pojo.Student;
 
 import java.util.List;

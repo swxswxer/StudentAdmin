@@ -1,10 +1,9 @@
 package com.swx.web.servlet.student;
 
 import com.alibaba.fastjson.JSON;
-import com.sun.org.apache.xpath.internal.functions.FuncFalse;
 import com.swx.pojo.Student;
 import com.swx.pojo.StudentUtil;
-import com.swx.service.StudentService;
+import com.swx.service.ServiceInterface.StudentService;
 import com.swx.service.impl.StudentServiceimpl;
 import com.swx.util.ResponseMsgUtil;
 import com.swx.web.servlet.BaseServlet;
@@ -44,7 +43,7 @@ public class StudentServlet extends BaseServlet {
         String params = br.readLine();
         System.out.println(params);
         Student student = studentUtil.ParseStudentParams(params);
-
+        System.out.println(student);
         Student oldData = studentService.selectById(student.getStudentid());
         if (oldData == null) {
             //调用service

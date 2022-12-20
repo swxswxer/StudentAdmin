@@ -1,8 +1,8 @@
-package com.swx.web.servlet.loginOrRegister;
+package com.swx.web.servlet.loginRegister;
 
 import com.alibaba.fastjson.JSON;
 import com.swx.pojo.User;
-import com.swx.service.UserService;
+import com.swx.service.ServiceInterface.UserService;
 import com.swx.service.impl.UserServiceImpl;
 
 import javax.servlet.*;

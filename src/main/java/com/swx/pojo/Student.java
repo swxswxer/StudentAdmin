@@ -3,6 +3,7 @@ package com.swx.pojo;
 import com.alibaba.fastjson.JSON;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Student {
 
@@ -15,6 +16,8 @@ public class Student {
     private String sex;
 
     private String major;
+
+private List<String> curriculums;
 
 
     public int getStudentid() {
@@ -57,6 +60,13 @@ public class Student {
         this.major = major;
     }
 
+    public List<String> getCurriculums() {
+        return curriculums;
+    }
+
+    public void setCurriculums(List<String> curriculums) {
+        this.curriculums = curriculums;
+    }
 
     @Override
     public String toString() {
@@ -69,12 +79,15 @@ public class Student {
                 '}';
     }
 
-    public Student(int studentid, String name, int age, String sex, String major) {
+    public Student() {
+//        this.major = this.majorClass.getClassname();
+    }
+
+    public Student(int studentid, String name, int age, String sex) {
         this.studentid = studentid;
         this.name = name;
         this.age = age;
         this.sex = sex;
-        this.major = major;
     }
 }
 

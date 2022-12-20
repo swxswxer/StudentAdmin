@@ -1,9 +1,11 @@
 package com.swx.pojo;
 
-public class Class {
+public class Clazz {
     int id ;
     String classname ;
     String department;
+
+
 
     public String getClassname() {
         return classname;
@@ -29,18 +31,19 @@ public class Class {
         this.id = id;
     }
 
-    public Class() {
+    public Clazz() {
 
     }
 
-    public Class(String classname, String department) {
+    public Clazz(int id, String classname, String department) {
+        this.id = id;
         this.classname = classname;
         this.department = department;
     }
 
     @Override
     public String toString() {
-        return "Class{" +
+        return "Clazz{" +
                 "id=" + id +
                 ", classname='" + classname + '\'' +
                 ", department='" + department + '\'' +

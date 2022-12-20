@@ -2,7 +2,7 @@ package com.swx.service.impl;
 
 import com.swx.mapper.StudentMapper;
 import com.swx.pojo.Student;
-import com.swx.service.StudentService;
+import com.swx.service.ServiceInterface.StudentService;
 import com.swx.util.SqlSessionFactoryUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
