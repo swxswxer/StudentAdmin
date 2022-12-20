@@ -42,6 +42,9 @@ export function updateStudentInfo(studentData) {
     return request({
         url: process.env.VUE_APP_STUDENT_UPDATE,
         method: 'post',
-        params: studentData
+        data: studentData,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
     })
 }

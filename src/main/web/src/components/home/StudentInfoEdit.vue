@@ -54,8 +54,8 @@ export default {
         let majorList = []
         for (let idx = 0; idx < dataList.length; idx++){
           majorList.push({
-            label: dataList[idx].name,
-            value: dataList[idx].name
+            label: dataList[idx].classname,
+            value: dataList[idx].classname
           })
         }
         this.majorData = majorList
