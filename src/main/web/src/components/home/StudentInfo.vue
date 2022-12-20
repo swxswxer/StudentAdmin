@@ -152,6 +152,8 @@ export default {
         } else {
           Message.success("删除成功")
         }
+        row.loading = false
+        this.tableData.splice(index, 1)
       })
     },
     searchClick() {
@@ -176,6 +178,9 @@ export default {
           this.showHeader = this.tableData.length !== 0;
           this.searchLoading = false
         })
+      } else {
+        this.showHeader = false;
+        this.searchLoading = false;
       }
     }
   }

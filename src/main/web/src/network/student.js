@@ -20,7 +20,7 @@ export function getStudentInfoByName(name) {
 
 export function getStudentInfoByMajor(major) {
     return request({
-        url: process.env.VUE_APP_STUDENT_QUERY_BY_NAME,
+        url: process.env.VUE_APP_STUDENT_QUERY_BY_MAJOR,
         method: 'get',
         params: {
             'major': major
