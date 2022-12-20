@@ -179,8 +179,15 @@ export default {
           this.searchLoading = false
         })
       } else {
-        this.showHeader = false;
-        this.searchLoading = false;
+        getStudentInfo().then(res => {
+          if (res.status === true) {
+            this.tableData = res.data
+            this.addLoadingToResp()
+          }
+          this.showHeader = this.tableData.length !== 0;
+          this.tableLoading = false
+          this.searchLoading = false
+        })
       }
     }
   }
