@@ -16,9 +16,6 @@
             <if test="department != null and department !=''">
                 department = #{department},
             </if>
-            <if test="credit != null ">
-                credit = #{credit},
-            </if>
         </set>
         where id = #{id};
     </update>

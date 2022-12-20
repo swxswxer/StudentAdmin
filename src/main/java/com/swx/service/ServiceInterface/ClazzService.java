@@ -13,4 +13,5 @@ public interface ClazzService {
 
     void update(Clazz clazz);
     Clazz selectByName(String classname);
+    Clazz selectById(int id);
 }

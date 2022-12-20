@@ -2,7 +2,7 @@ package com.swx.web.servlet.student;
 
 import com.alibaba.fastjson.JSON;
 import com.swx.pojo.Student;
-import com.swx.pojo.StudentUtil;
+import com.swx.util.StudentUtil;
 import com.swx.service.ServiceInterface.StudentService;
 import com.swx.service.impl.StudentServiceimpl;
 import com.swx.util.ResponseMsgUtil;
@@ -24,6 +24,7 @@ public class StudentServlet extends BaseServlet {
     public void selectAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //1 掉哦你service查询
         List<Student> brands = studentService.selectAll();
+        System.out.println(brands);
         HashMap<String, Object> msg = new HashMap<String, Object>();
         msg.put("data", brands);
         msg.put("status", true);

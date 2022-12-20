@@ -13,4 +13,5 @@ public interface CurriculumService {
     void deleteById(int id);
 
     void update(Curriculum curriculum);
+    Curriculum selectById(int id);
 }

@@ -14,10 +14,7 @@ public class Student {
     private int age;
 
     private String sex;
-
     private String major;
-
-private List<String> curriculums;
 
 
     public int getStudentid() {
@@ -60,14 +57,6 @@ private List<String> curriculums;
         this.major = major;
     }
 
-    public List<String> getCurriculums() {
-        return curriculums;
-    }
-
-    public void setCurriculums(List<String> curriculums) {
-        this.curriculums = curriculums;
-    }
-
     @Override
     public String toString() {
         return "Student{" +
@@ -83,11 +72,13 @@ private List<String> curriculums;
 //        this.major = this.majorClass.getClassname();
     }
 
-    public Student(int studentid, String name, int age, String sex) {
+    public Student(int studentid, String name, int age, String sex,String major) {
         this.studentid = studentid;
         this.name = name;
         this.age = age;
         this.sex = sex;
+        this.major = major;
+
     }
 }
 

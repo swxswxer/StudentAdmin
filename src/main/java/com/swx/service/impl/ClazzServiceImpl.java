@@ -63,4 +63,14 @@ public class ClazzServiceImpl implements ClazzService {
         sqlSession.close();
         return clazz;
     }
+
+    @Override
+    public Clazz selectById(int id) {
+        SqlSession sqlSession = factory.openSession();
+        //获取student mapper
+        ClazzMapper mapper = sqlSession.getMapper(ClazzMapper.class);
+        Clazz clazz = mapper.selectById(id);
+        sqlSession.close();
+        return clazz;
+    }
 }

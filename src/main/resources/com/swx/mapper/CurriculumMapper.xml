@@ -10,10 +10,10 @@
                 id = #{id},
             </if>
             <if test="name != null and name !=''">
-                classname = #{classname},
+                name = #{name},
             </if>
             <if test="credit != null ">
-                department = #{department},
+                credit = #{credit},
             </if>
         </set>
         where id = #{id};

@@ -28,4 +28,7 @@ public interface ClazzMapper {
     @Select("select * from class where classname = #{classname}")
     Clazz selectByName(String classname);
 
+    @Select("select * from class where id = #{id}")
+    Clazz selectById(int id);
+
 }

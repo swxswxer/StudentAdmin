@@ -12,12 +12,15 @@ public interface CurriculumMapper {
     @Select("select * from curriculum")
     List<Curriculum> selectAll();
 
-    @Insert("insert into curriculum values(#{id},#{name},#{credit},#{numberOfPeople},#{major)")
+    @Insert("insert into curriculum values(#{id},#{name},#{credit})")
     void add (Curriculum curriculum);
 
     void update(Curriculum curriculum);
 
     @Delete("delete from curriculum where id=#{id}")
     void deleteById(int id);
+
+    @Select("select  * from curriculum where id=#{id}")
+    Curriculum selectById(int id);
 
 }
