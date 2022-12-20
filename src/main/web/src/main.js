@@ -6,7 +6,9 @@ import {
     Aside, Main, Header, Menu,
     Submenu, MenuItemGroup, MenuItem,
     Table, TableColumn, Tag, Loading,
-    Row, Col, Avatar, Descriptions, DescriptionsItem
+    Row, Col, Avatar, Descriptions,
+    DescriptionsItem, Dialog, Form, FormItem,
+    Select, Option
 } from "element-ui"
 
 
@@ -30,6 +32,11 @@ Vue.use(Col)
 Vue.use(Avatar)
 Vue.use(Descriptions)
 Vue.use(DescriptionsItem)
+Vue.use(Dialog)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Select)
+Vue.use(Option)
 
 new Vue({
     router,

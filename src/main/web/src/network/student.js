@@ -37,3 +37,11 @@ export function delectStudentById(studentId) {
         }
     })
 }
+
+export function updateStudentInfo(studentData) {
+    return request({
+        url: process.env.VUE_APP_STUDENT_UPDATE,
+        method: 'post',
+        params: studentData
+    })
+}

@@ -71,12 +71,16 @@
         </el-table-column>
       </el-table>
     </div>
+    <el-dialog title="编辑学生信息" :visible.sync="dialogVisible" width="30%">
+      <student-info-edit :stu-info="selectEditStuInfo"/>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import {delectStudentById, getStudentInfo, getStudentInfoByMajor, getStudentInfoByName} from "@/network/student";
 import StudentInfoExpand from "@/components/home/StudentInfoExpand";
+import StudentInfoEdit from "@/components/home/StudentInfoEdit";
 import {Message} from "element-ui";
 
 
@@ -84,12 +88,15 @@ export default {
   name: "StudentInfo",
   components: {
     StudentInfoExpand,
+    StudentInfoEdit
   },
   data() {
     return {
+      dialogVisible: false,
       tableLoading: false,
       showHeader: false,
       searchLoading: false,
+      selectEditStuInfo: {},
       nameInput: '',
       majorInput: '',
       tableHeight: 0,
@@ -142,6 +149,8 @@ export default {
     },
     handleEdit(index, row) {
       console.log("edit index: " + index + " row: " + row)
+      this.selectEditStuInfo = row
+      this.dialogVisible = true;
     },
     handleDelete(index, row) {
       console.log("delete index: " + index)
