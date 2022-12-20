@@ -105,21 +105,21 @@ export default {
           studentid: 123456,
           name: 'yong',
           age: 18,
-          sex: 'male',
+          sex: '男',
           major: '软件工程'
         },
         {
           studentid: 123456,
           name: 'yong',
           age: 18,
-          sex: 'male',
+          sex: '男',
           major: '软件工程'
         },
         {
           studentid: 123456,
           name: 'yong',
           age: 18,
-          sex: 'male',
+          sex: '男',
           major: '软件工程'
         },
       ],

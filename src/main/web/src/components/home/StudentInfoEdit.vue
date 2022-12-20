@@ -9,15 +9,15 @@
       </el-form-item>
       <el-form-item label="性别">
         <el-select v-model="formData.sex" placeholder="请选择性别" class="formInput">
-          <el-option label="男" value="Men"></el-option>
-          <el-option label="女" value="Women"></el-option>
+          <el-option value="男"></el-option>
+          <el-option value="女"></el-option>
         </el-select>
       </el-form-item>
 
       <el-form-item label="专业班级">
         <el-select v-model="formData.major" placeholder="请选择活动专业" class="formInput">
           <el-option v-for="(major) in this.majorData" :key="major.value"
-                     :label="major.label" :value="major.value"></el-option>
+                     :value="major.value"></el-option>
         </el-select>
       </el-form-item>
 
@@ -55,7 +55,7 @@ export default {
         for (let idx = 0; idx < dataList.length; idx++){
           majorList.push({
             label: dataList[idx].name,
-            value: dataList[idx].id
+            value: dataList[idx].name
           })
         }
         this.majorData = majorList
