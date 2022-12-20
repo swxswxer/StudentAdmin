@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 
 const Login = () => import('components/LoginPage')
 const HomePage = () => import('components/home/HomePage')
+const StudentInfoPage = () => import('components/home/StudentInfo')
 
 
 const routes = [
@@ -18,8 +19,14 @@ const routes = [
     },
     {
         path: '/home',
-        component: HomePage
-    }
+        component: HomePage,
+        children: [
+            {
+                path: 'student_info',
+                component: StudentInfoPage,
+            }
+        ]
+    },
 ]
 
 const router = new VueRouter({
