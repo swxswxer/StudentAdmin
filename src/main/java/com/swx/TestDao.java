@@ -43,6 +43,6 @@ public class TestDao {
     public void curriculum(){
         CurriculumServiceImpl curriculumService = new CurriculumServiceImpl();
 
-        curriculumService.add(new Curriculum(1,"javaweb",4));
+//        curriculumService.add(new Curriculum(1,"javaweb",4));
     }
 }

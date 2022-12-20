@@ -33,7 +33,7 @@ export function delectStudentById(studentId) {
         url: process.env.VUE_APP_STUDENT_DELETE,
         method: 'get',
         params: {
-            'studentid': studentId
+            'student_id': studentId
         }
     })
 }

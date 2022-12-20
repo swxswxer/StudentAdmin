@@ -16,7 +16,6 @@ public class Student {
     private String sex;
     private String major;
 
-
     public int getStudentid() {
         return studentid;
     }
@@ -57,6 +56,15 @@ public class Student {
         this.major = major;
     }
 
+
+    public Student(int studentid, String name, int age, String sex, String major) {
+        this.studentid = studentid;
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.major = major;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -66,19 +74,6 @@ public class Student {
                 ", sex='" + sex + '\'' +
                 ", major='" + major + '\'' +
                 '}';
-    }
-
-    public Student() {
-//        this.major = this.majorClass.getClassname();
-    }
-
-    public Student(int studentid, String name, int age, String sex,String major) {
-        this.studentid = studentid;
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
-        this.major = major;
-
     }
 }
 

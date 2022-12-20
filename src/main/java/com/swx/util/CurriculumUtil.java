@@ -1,11 +1,7 @@
 package com.swx.util;
-
 import com.alibaba.fastjson.JSON;
-import com.swx.pojo.Clazz;
 import com.swx.pojo.Curriculum;
-
 import java.util.HashMap;
-
 public class CurriculumUtil {
     public Curriculum ParseStudentParams(String params) {
         HashMap<String, Object> studentMap = new HashMap<String, Object>();
@@ -20,11 +16,8 @@ public class CurriculumUtil {
                 continue;
             }
             studentMap.put(key, value);
-
         }
-
         String jsonString = JSON.toJSONString(studentMap);
-
         return JSON.parseObject(jsonString, Curriculum.class);
     }
 }

@@ -15,6 +15,9 @@
             <if test="credit != null ">
                 credit = #{credit},
             </if>
+            <if test="time != null and time !=''">
+                time = #{time},
+            </if>
         </set>
         where id = #{id};
     </update>

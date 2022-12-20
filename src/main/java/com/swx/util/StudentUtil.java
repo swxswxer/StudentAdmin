@@ -1,10 +1,7 @@
 package com.swx.util;
-
 import com.alibaba.fastjson.JSON;
 import com.swx.pojo.Student;
-
 import java.util.HashMap;
-
 public class StudentUtil {
     public Student ParseStudentParams(String params) {
         HashMap<String, Object> studentMap = new HashMap<String, Object>();
@@ -18,12 +15,9 @@ public class StudentUtil {
                 System.out.println("key: " + key + "is empty");
                 continue;
             }
-            studentMap.put(key, value);
-
+            studentMap.put(key,value);
         }
-
         String jsonString = JSON.toJSONString(studentMap);
-
         return JSON.parseObject(jsonString, Student.class);
     }
 }

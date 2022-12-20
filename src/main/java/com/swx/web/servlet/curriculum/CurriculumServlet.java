@@ -42,7 +42,6 @@ public class CurriculumServlet extends BaseServlet {
 
         BufferedReader br = req.getReader();
         String params = br.readLine();
-        System.out.println(params);
         Curriculum curriculum = curriculumUtil.ParseStudentParams(params);
         Curriculum oldData = curriculumService.selectById(curriculum.getId());
         if (oldData == null) {
