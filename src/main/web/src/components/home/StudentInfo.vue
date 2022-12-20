@@ -22,6 +22,11 @@
           :loading="tableLoading"
           :data="tableData"
           :height="tableHeight">
+        <el-table-column type="expand">
+          <template slot-scope="scope">
+            <student-info-expand :stu-name="scope.row.name" :stu-id="scope.row.studentid"/>
+          </template>
+        </el-table-column>
         <el-table-column
             prop="studentid"
             label="学号"
@@ -70,9 +75,14 @@
 
 <script>
 import {getStudentInfo} from "@/network/student";
+import StudentInfoExpand from "@/components/home/StudentInfoExpand";
+
 
 export default {
   name: "StudentInfo",
+  components: {
+    StudentInfoExpand,
+  },
   data() {
     return {
       tableLoading: false,
@@ -81,10 +91,20 @@ export default {
       nameInput: '',
       majorInput: '',
       tableHeight: 0,
-      tableData: [],
+      tableData: [
+        {
+          studentid: 123456,
+          name: 'yong',
+          age: 18,
+          sex: 'male',
+          major: '软件工程'
+        }
+      ],
     }
   },
   created() {
+    console.log("table length: " + this.tableData.length)
+    this.showHeader = this.tableData.length !== 0;
     this.$nextTick(() => {
       this.tableHeight = document.getElementById("studentInfo").offsetHeight - document.getElementById("tableHeader").offsetHeight
     })
@@ -93,9 +113,7 @@ export default {
       if (res.status === true) {
         this.tableData = res.data
       }
-      if (this.tableData.length === 0) {
-        this.showHeader = false
-      }
+      this.showHeader = this.tableData.length !== 0;
       this.tableLoading = false
     })
   },
