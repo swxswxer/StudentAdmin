@@ -24,6 +24,10 @@ const routes = [
             {
                 path: 'student_info',
                 component: StudentInfoPage,
+            },
+            {
+                path: 'class_info',
+                component: StudentInfoPage,
             }
         ]
     },

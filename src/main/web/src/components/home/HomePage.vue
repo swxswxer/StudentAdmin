@@ -54,7 +54,13 @@ export default {
       isRouter: true,
       activeIndex: '/home/student_info',
     }
-  }
+  },
+  created() {
+    if (this.$route.fullPath === '/home') {
+      this.$router.push(this.activeIndex).catch(() => {})
+      this.$router.replace(this.activeIndex)
+    }
+  },
 }
 </script>
 
@@ -64,7 +70,6 @@ export default {
   height: 100%;
   padding: 0;
   margin: 10px 10px 10px 10px;
-  background-color: red;
   border-radius: 10px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
 }
