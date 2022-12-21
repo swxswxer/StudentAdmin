@@ -95,7 +95,7 @@ export default {
   margin-right: 20px;
   display: flex;
   align-content: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .center {

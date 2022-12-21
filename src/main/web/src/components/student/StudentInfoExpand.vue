@@ -29,8 +29,8 @@
         </el-col>
       </el-row>
     </div>
-    <el-dialog title="编辑学生课程信息" :visible.sync="dialogVisible" width="50%">
-      <student-course-modify :stu-name="stuName" :stu-id="stuId"/>
+    <el-dialog title="编辑学生课程信息" :visible.sync="dialogVisible" width="70%">
+      <student-course-modify :stu-name="stuName" :stu-id="stuId" :selectCourse="tableData"/>
     </el-dialog>
   </div>
 </template>

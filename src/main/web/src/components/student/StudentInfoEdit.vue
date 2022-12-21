@@ -1,6 +1,6 @@
 <template>
   <div class="stuEditForm">
-    <el-form :model="stuInfo" label-position="right" label-width="80px">
+    <el-form :model="formData" label-position="right" label-width="80px">
       <el-form-item label="学生姓名">
         <el-input class="formInput" v-model="formData.name"></el-input>
       </el-form-item>
@@ -64,19 +64,11 @@ export default {
       }
     })
   },
-  beforeMount() {
-    this.formData.name = this.stuInfo.name
-    this.formData.studentid = this.stuInfo.studentid
-    this.formData.age = this.stuInfo.age
-    this.formData.sex = this.stuInfo.sex
-    this.formData.major = this.stuInfo.major
-  },
   props: {
     stuInfo: Object
   },
   methods: {
     onSubmit() {
-      console.log(this.formData)
       updateStudentInfo(this.formData).then(res => {
         if (res.success === true) {
           Message.success("提交成功")
@@ -84,6 +76,7 @@ export default {
           Message.warning(res.message)
         }
       })
+      this.$emit("stuInfoEditCallBack", this.formData)
     },
   }
 }
