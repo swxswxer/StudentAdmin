@@ -8,22 +8,10 @@
         "time": "18周"
       },
       {
-        "id": 3333,
-        "name": "web 程序设计",
-        "credit": 3,
-        "time": "8周"
-      },
-      {
-        "id": 2222,
-        "name": "python 程序设计",
+        "id": 2,
+        "name": "Web应用与开发",
         "credit": 2,
-        "time": "8周"
-      },
-      {
-        "id": 1111,
-        "name": "golang 程序设计",
-        "credit": 1,
-        "time": "12周"
+        "time": "18周"
       }
     ],
     "status": true

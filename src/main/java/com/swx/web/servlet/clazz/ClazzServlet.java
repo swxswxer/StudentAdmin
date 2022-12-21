@@ -62,7 +62,7 @@ public class ClazzServlet extends BaseServlet {
     }
 
     //delete
-    public void delectById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    public void deleteById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         ResponseMsgUtil responseMsgUtil = new ResponseMsgUtil();
         String id = req.getParameter("id");
         System.out.println(id);

@@ -15,6 +15,7 @@
 <script>
 import {Message} from "element-ui";
 import {getAllCourse} from "@/network/course";
+import {studentAddCourse, studentDeleteCourse} from "@/network/student";
 
 export default {
   name: "studentCourseModify",
@@ -32,12 +33,51 @@ export default {
     }
   },
   methods: {
+    complement(a, b) {
+      return [
+        ...a.filter(item => !b.includes(item)),
+        ...b.filter(item => !a.includes(item))
+      ]
+    },
     modifyClick() {
-      alert("click modify: " + this.selectValue)
+      let originCourseId = []
+      for (let course of this.selectCourse) {
+        originCourseId.push(course.id)
+      }
+
+      let complementId = this.complement(originCourseId, this.selectValue)
+
+      let addIds = []
+      let deleteIds = []
+
+      for (let courseId of complementId) {
+        if (this.selectValue.includes(courseId)) {
+          addIds.push(courseId)
+        } else {
+          deleteIds.push(courseId)
+        }
+      }
+
+      if (addIds.length !== 0) {
+        studentAddCourse(this.stuId, addIds).then(res => {
+          if (res.success === true) {
+            Message.success(`增加: ${addIds} 成功`)
+          } else {
+            Message.warning(`增加: ${addIds} 失败，错误信息: ${res.message}`)
+          }
+        })
+      }
+
+      if (deleteIds.length !== 0) {
+        studentDeleteCourse(this.stuId, deleteIds).then(res => {
+          if (res.success === true) {
+            Message.success(`删除: ${deleteIds} 成功`)
+          } else {
+            Message.success(`删除: ${deleteIds} 失败，错误信息: ${res.message}`)
+          }
+        })
+      }
     }
-  },
-  created() {
-    // TODO get all course
   },
   beforeMount() {
     getAllCourse().then(res => {
