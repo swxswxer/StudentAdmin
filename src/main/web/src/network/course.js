@@ -3,7 +3,10 @@ import {request} from "@/network/requests";
 export function getAllCourse() {
     return request({
         url: process.env.VUE_APP_COURSE_QUERY_ALL,
-        method: 'get'
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
     })
 }
 
@@ -35,6 +38,9 @@ export function deleteCourse(id) {
         method: 'get',
         param: {
             "id": id
-        }
+        },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
     })
 }

@@ -1,23 +1,22 @@
 <template>
-  <div class="courseEditForm">
-    <el-form :model="formData" label-position="right" label-width="80px">
-      <el-form-item label="课程id">
-        <el-input class="formInput" v-model="formData.id"></el-input>
-      </el-form-item>
-      <el-form-item label="课程名字">
-        <el-input v-model="formData.name"></el-input>
-      </el-form-item>
-      <el-form-item label="课程学分">
-        <el-input v-model="formData.credit"></el-input>
-      </el-form-item>
-      <el-form-item label="课程周数">
-        <el-input v-model="formData.time"></el-input>
-      </el-form-item>
-
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">提交</el-button>
-      </el-form-item>
-    </el-form>
+  <div class="courseModify">
+    <div class="courseEditForm">
+      <el-form :model="formData" label-position="right" label-width="80px">
+        <el-form-item label="课程id">
+          <el-input class="formInput" v-model="formData.id"></el-input>
+        </el-form-item>
+        <el-form-item label="课程名字">
+          <el-input v-model="formData.name"></el-input>
+        </el-form-item>
+        <el-form-item label="课程学分">
+          <el-input v-model="formData.credit"></el-input>
+        </el-form-item>
+        <el-form-item label="课程周数">
+          <el-input v-model="formData.time"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-button type="primary" @click="onSubmit" style="width: 150px">提交</el-button>
+    </div>
   </div>
 </template>
 
@@ -56,8 +55,13 @@ export default {
 </script>
 
 <style scoped>
+.courseModify {
+  display: flex;
+  flex-direction: column;
+}
+
 .courseEditForm {
-  width: 80%;
+  margin: 0 auto;
 }
 
 .formInput {
