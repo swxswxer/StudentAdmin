@@ -30,4 +30,13 @@
         where studentid = #{studentid};
     </update>
 
+<!--    <select id="getCurriculumByIds" resultMap="BaseResultMap">-->
+<!--        Select-->
+<!--        <include refid="Base_Column_List" />-->
+<!--        from  curriculum ID in-->
+<!--        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">-->
+<!--            #{item}-->
+<!--        </foreach>-->
+<!--    </select>-->
+
 </mapper>

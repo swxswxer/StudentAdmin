@@ -6,6 +6,7 @@ import com.swx.service.ServiceInterface.StudentService;
 import com.swx.service.impl.ClazzServiceImpl;
 import com.swx.service.impl.CurriculumServiceImpl;
 import com.swx.service.impl.StudentServiceimpl;
+import org.apache.ibatis.annotations.Insert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -44,5 +45,37 @@ public class TestDao {
         CurriculumServiceImpl curriculumService = new CurriculumServiceImpl();
 
 //        curriculumService.add(new Curriculum(1,"javaweb",4));
+    }
+
+    @Test
+    public void testAddClass(){
+        int studentid = 5 ;
+        int curriculumid = 4 ;
+        StudentService studentService = new StudentServiceimpl();
+//        studentService.addClass(studentid,curriculumid);
+    }
+
+    @Test
+    public void test1(){
+        StudentService studentService = new StudentServiceimpl();
+studentService.addStudentCurriculumMapping(1,1);
+    }
+
+    @Test
+    public void test2(){
+        StudentService studentService = new StudentServiceimpl();
+        List<Integer> studentCurriculumList = studentService.getStudentCurriculumList(7);
+        System.out.println("studentCurriculumList = " + studentCurriculumList);
+
+        List<Curriculum> curriculumByIds = studentService.getCurriculumByIds(studentCurriculumList);
+        System.out.println("curriculumByIds = " + curriculumByIds);
+    }
+
+
+    @Test
+    public void test3(){
+        StudentService studentService = new StudentServiceimpl();
+        studentService.deleteStudentCurriculum(2140130012,1);
+
     }
 }

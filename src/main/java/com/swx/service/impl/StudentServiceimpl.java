@@ -1,9 +1,11 @@
 package com.swx.service.impl;
 
 import com.swx.mapper.StudentMapper;
+import com.swx.pojo.Curriculum;
 import com.swx.pojo.Student;
 import com.swx.service.ServiceInterface.StudentService;
 import com.swx.util.SqlSessionFactoryUtils;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -97,5 +99,52 @@ public class StudentServiceimpl implements StudentService {
         return students;
     }
 
+    @Override
+    public void addStudentCurriculumMapping(int studentid, int curriculumid) {
+        //获取sqlSession对象
+        SqlSession sqlSession = factory.openSession();
+        //获取brand mapper
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        //执行方法
+        mapper.addStudentCurriculumMapping(studentid,curriculumid);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Override
+    public void deleteStudentCurriculum(int studentid, int curriculumid) {
+        SqlSession sqlSession = factory.openSession();
+        //获取brand mapper
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        //执行方法
+        mapper.deleteStudentCurriculum(studentid,curriculumid);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Override
+    public List<Integer> getStudentCurriculumList(int studentid) {
+        SqlSession sqlSession = factory.openSession();
+        //获取student mapper
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        //执行方法
+        List<Integer> classs = mapper.getStudentCurriculumList(studentid);
+        //释放资源
+        sqlSession.close();
+
+        return classs;
+    }
+
+    @Override
+    public List<Curriculum> getCurriculumByIds(List<Integer> classIdList) {
+        SqlSession sqlSession = factory.openSession();
+        //获取student mapper
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        //执行方法
+        List<Curriculum> curriculumList = mapper.getCurriculumByIds(classIdList);
+        //释放资源
+        sqlSession.close();
+        return curriculumList;
+    }
 
 }

@@ -1,7 +1,10 @@
 package com.swx.service.ServiceInterface;
 
 import com.swx.pojo.Clazz;
+import com.swx.pojo.Curriculum;
 import com.swx.pojo.Student;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,4 +22,17 @@ public interface StudentService {
 
     List<Student> selectByName(String name);
     List<Student> selectByMajor(String major);
+
+
+    List<Integer> getStudentCurriculumList(int studentid);
+
+//    List<Curriculum> getCurriculumById(List<Integer> classIdList );
+
+
+    List<Curriculum> getCurriculumByIds(List<Integer> ids);
+
+    void addStudentCurriculumMapping(int studentid, int curriculumid);
+
+    void deleteStudentCurriculum(int studentid,int curriculumid);
+
 }
