@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 
@@ -43,9 +44,8 @@ public class ClazzServlet extends BaseServlet {
 
         BufferedReader br = req.getReader();
         String params = br.readLine();
-        System.out.println(params);
+        params = URLDecoder.decode(params,"UTF-8");
         Clazz clazz = clazzUtil.ParseStudentParams(params);
-        System.out.println(clazz);
         Clazz oldData = clazzService.selectById(clazz.getId());
         if (oldData == null) {
             //调用service
@@ -87,6 +87,8 @@ public class ClazzServlet extends BaseServlet {
         ClazzUtil clazzUtil = new ClazzUtil();
         BufferedReader br = req.getReader();
         String params = br.readLine();
+        params = URLDecoder.decode(params,"UTF-8");
+
         //转化为student对象
         Clazz clazz = clazzUtil.ParseStudentParams(params);
         System.out.println(clazz);

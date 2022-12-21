@@ -32,4 +32,7 @@ public interface StudentService {
     List<Curriculum> getCurriculumByIds(List<Integer> ids);
 
     void addStudentCurriculumMapping(int studentid, int curriculumid);
+
+    void deleteStudentCurriculum(int studentid,int curriculumid);
+
 }

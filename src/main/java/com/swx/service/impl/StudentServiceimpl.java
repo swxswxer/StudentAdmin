@@ -112,6 +112,17 @@ public class StudentServiceimpl implements StudentService {
     }
 
     @Override
+    public void deleteStudentCurriculum(int studentid, int curriculumid) {
+        SqlSession sqlSession = factory.openSession();
+        //获取brand mapper
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        //执行方法
+        mapper.deleteStudentCurriculum(studentid,curriculumid);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Override
     public List<Integer> getStudentCurriculumList(int studentid) {
         SqlSession sqlSession = factory.openSession();
         //获取student mapper

@@ -58,7 +58,7 @@ public class TestDao {
     @Test
     public void test1(){
         StudentService studentService = new StudentServiceimpl();
-studentService.addStudentCurriculumMapping(8,1);
+studentService.addStudentCurriculumMapping(1,1);
     }
 
     @Test
@@ -69,5 +69,13 @@ studentService.addStudentCurriculumMapping(8,1);
 
         List<Curriculum> curriculumByIds = studentService.getCurriculumByIds(studentCurriculumList);
         System.out.println("curriculumByIds = " + curriculumByIds);
+    }
+
+
+    @Test
+    public void test3(){
+        StudentService studentService = new StudentServiceimpl();
+        studentService.deleteStudentCurriculum(2140130012,1);
+
     }
 }

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class CurriculumServlet extends BaseServlet {
 
         BufferedReader br = req.getReader();
         String params = br.readLine();
+        params = URLDecoder.decode(params,"UTF-8");
         Curriculum curriculum = curriculumUtil.ParseStudentParams(params);
         Curriculum oldData = curriculumService.selectById(curriculum.getId());
         if (oldData == null) {
@@ -83,6 +85,7 @@ public class CurriculumServlet extends BaseServlet {
         CurriculumUtil curriculumUtil = new CurriculumUtil();
         BufferedReader br = req.getReader();
         String params = br.readLine();
+        params = URLDecoder.decode(params,"UTF-8");
         //转化为student对象
         Curriculum curriculum = curriculumUtil.ParseStudentParams(params);
         System.out.println(curriculum);

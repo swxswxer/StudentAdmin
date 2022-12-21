@@ -51,4 +51,8 @@ public interface StudentMapper {
             "</foreach>",
             "</script>"})
     List<Curriculum> getCurriculumByIds(List<Integer> ids);
+
+    @Delete("DELETE FROM studentCurriculumidMapping\n" +
+            "WHERE studentid = #{studentid} AND curriculumid = #{curriculumid}")
+    void deleteStudentCurriculum(@Param("studentid")int studentid,@Param("curriculumid")int curriculumid);
 }
