@@ -70,7 +70,7 @@ export function studentAddCourse(studentId, courseIds) {
             majors: courseIds
         },
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
         },
     })
 }
@@ -84,7 +84,7 @@ export function studentDeleteCourse(studentId, courseIds) {
             majors: courseIds
         },
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
         },
     })
 }
