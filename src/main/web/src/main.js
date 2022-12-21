@@ -8,7 +8,7 @@ import {
     Table, TableColumn, Tag, Loading,
     Row, Col, Avatar, Descriptions,
     DescriptionsItem, Dialog, Form, FormItem,
-    Select, Option
+    Select, Option, Transfer
 } from "element-ui"
 
 
@@ -37,6 +37,7 @@ Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Transfer)
 
 new Vue({
     router,

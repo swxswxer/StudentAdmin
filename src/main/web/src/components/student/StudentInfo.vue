@@ -8,7 +8,7 @@
         <el-col :span="3">
           <el-input v-model="majorInput" placeholder="请输入专业"></el-input>
         </el-col>
-        <el-col :span="3" :pull="1" style="margin-left: 10px">
+        <el-col :span="3" :pull="1" style="margin-left: 15px">
           <el-button type="primary" size="medium" @click="searchClick" :loading="searchLoading">查询</el-button>
         </el-col>
       </el-row>
