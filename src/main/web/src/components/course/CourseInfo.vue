@@ -125,6 +125,7 @@ export default {
     },
     handleDelete(index, row) {
       row.loading = true
+      console.log(row.id)
       deleteCourse(row.id).then(res => {
         if (res.success !== true) {
           Message.warning(res.message)

@@ -36,7 +36,7 @@ export function deleteCourse(id) {
     return request({
         url: process.env.VUE_APP_COURSE_DELETE,
         method: 'get',
-        param: {
+        params: {
             "id": id
         },
         headers: {
