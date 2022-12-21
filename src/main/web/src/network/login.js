@@ -14,7 +14,7 @@ export function login(username, password) {
     },
   }).then(res => {
     if (res.success === true) {
-      Message.success(res.message)
+      Message.success("登录成功")
     } else {
       Message.error(res.message)
     }

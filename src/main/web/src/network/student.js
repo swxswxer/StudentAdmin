@@ -48,3 +48,55 @@ export function updateStudentInfo(studentData) {
         },
     })
 }
+
+export function studentAddCourse(studentId, courseIds) {
+    return request({
+        url: process.env.VUE_APP_STU_ADD_COURSE,
+        method: 'post',
+        data: {
+            student_id: studentId,
+            majors: courseIds
+        },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+}
+
+export function studentDeleteCourse(studentId, courseIds) {
+    return request({
+        url: process.env.VUE_APP_STU_DELETE_COURSE,
+        method: 'post',
+        data: {
+            student_id: studentId,
+            majors: courseIds
+        },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+}
+
+export function queryStudentCourse(studentId) {
+    return request({
+        url: process.env.VUE_APP_QUERY_STU_COURSE,
+        method: 'get',
+        params: {
+            studentid: studentId,
+        },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+}
+
+export function queryAllCourse() {
+    return request({
+        url: process.env.VUE_APP_COURSE_QUERY_ALL,
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+}
+

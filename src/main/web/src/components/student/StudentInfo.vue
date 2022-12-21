@@ -103,29 +103,7 @@ export default {
       nameInput: '',
       majorInput: '',
       tableHeight: 0,
-      tableData: [
-        {
-          studentid: 123456,
-          name: 'yong1',
-          age: 18,
-          sex: '男',
-          major: '软件工程'
-        },
-        {
-          studentid: 123457,
-          name: 'yong2',
-          age: 19,
-          sex: '男',
-          major: '软件工程'
-        },
-        {
-          studentid: 123458,
-          name: 'yong3',
-          age: 20,
-          sex: '男',
-          major: '软件工程'
-        },
-      ],
+      tableData: [],
     }
   },
   mounted() {

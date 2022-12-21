@@ -1,0 +1,53 @@
+{
+  "success": {
+    "data": [
+      {
+        "credit": 4,
+        "id": 1,
+        "name": "计算机网络",
+        "time": "18周"
+      },
+      {
+        "credit": 2,
+        "id": 2,
+        "name": "Web应用与开发",
+        "time": "18周"
+      },
+      {
+        "credit": 4,
+        "id": 3,
+        "name": "java编程基础",
+        "time": "18周"
+      },
+      {
+        "credit": 4,
+        "id": 4,
+        "name": "python基础",
+        "time": "18周"
+      },
+      {
+        "credit": 4,
+        "id": 5,
+        "name": "前端开发基础",
+        "time": "18周"
+      },
+      {
+        "credit": 4,
+        "id": 6,
+        "name": "后端开发基础",
+        "time": "18周"
+      },
+      {
+        "credit": 4,
+        "id": 7,
+        "name": "大学物理1",
+        "time": "18周"
+      }
+    ],
+    "status": true
+  },
+  "error": {
+    "status": false,
+    "message": "query failed"
+  }
+}
