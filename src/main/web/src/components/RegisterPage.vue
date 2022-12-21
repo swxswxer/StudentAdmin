@@ -19,7 +19,7 @@
 </template>
 
 <script>
-// import {register} from "@/network/register";
+import {register} from "@/network/register";
 import {Message} from "element-ui";
 
 export default {
@@ -69,22 +69,18 @@ export default {
           return false;
         }
       });
-      Message.success("注册成功")
-      sessionStorage.setItem("username", this.formData.name);
-      this.$router.push("/home/student_info").catch(() => {})
-      this.$router.replace("/home/student_info")
-      // this.submitLoading = true
-      // register(this.formData.name, this.formData.pass).then(res => {
-      //   if (res.success === true) {
-      //     Message.success("注册成功")
-      //     sessionStorage.setItem("username", this.formData.name);
-      //     this.$router.push("/home/student_info").catch(() => {})
-      //     this.$router.replace("/home/student_info")
-      //   } else {
-      //     Message.warning("注册失败, " + res.message)
-      //   }
-      //   this.submitLoading = false
-      // })
+      this.submitLoading = true
+      register(this.formData.name, this.formData.pass).then(res => {
+        if (res.success === true) {
+          Message.success("注册成功")
+          sessionStorage.setItem("username", this.formData.name);
+          this.$router.push("/home/student_info").catch(() => {})
+          this.$router.replace("/home/student_info")
+        } else {
+          Message.warning("注册失败, " + res.message)
+        }
+        this.submitLoading = false
+      })
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
