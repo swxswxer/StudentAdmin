@@ -82,7 +82,6 @@ export default {
   },
   methods: {
     modifyCourseClick() {
-      // TODO modify student course
       this.dialogVisible = true
     }
   }

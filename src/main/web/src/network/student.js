@@ -90,13 +90,4 @@ export function queryStudentCourse(studentId) {
     })
 }
 
-export function queryAllCourse() {
-    return request({
-        url: process.env.VUE_APP_COURSE_QUERY_ALL,
-        method: 'get',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-    })
-}
 

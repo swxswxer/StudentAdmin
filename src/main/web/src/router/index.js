@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 const Login = () => import('components/LoginPage')
 const HomePage = () => import('components/home/HomePage')
 const StudentInfoPage = () => import('components/student/StudentInfo')
+const CourseInfo = () => import('components/course/CourseInfo')
 
 
 const routes = [
@@ -26,8 +27,8 @@ const routes = [
                 component: StudentInfoPage,
             },
             {
-                path: 'class_info',
-                component: StudentInfoPage,
+                path: 'course_info',
+                component: CourseInfo,
             }
         ]
     },
