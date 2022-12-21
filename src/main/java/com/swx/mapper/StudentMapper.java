@@ -1,8 +1,10 @@
 package com.swx.mapper;
 
+import com.swx.pojo.Curriculum;
 import com.swx.pojo.Student;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -30,4 +32,23 @@ public interface StudentMapper {
 
     @Select("select * from student where major = #{major}")
     List<Student> selectByMajor(String Major);
+
+    // 添加学生专业映射表ß
+    @Insert("insert ignore into studentCurriculumidMapping(studentid,curriculumid) values(#{studentid},#{curriculumid}) ")
+    void addStudentCurriculumMapping(@Param("studentid")int studentid,@Param("curriculumid")int curriculumid);
+
+    //
+    @Select("SELECT curriculumid FROM studentCurriculumidMapping WHERE studentCurriculumidMapping.studentid = #{studentid}")
+    List<Integer> getStudentCurriculumList(int studentid);
+
+//    @Select("SELECT * FROM curriculum WHERE curriculum.id IN (#{classIdList})")
+//    List<Curriculum> getCurriculumByIds(List<Integer> ids );
+
+    @Select({"<script>" +
+            "select * from curriculum where curriculum.id in " +
+            "<foreach item='ids' index='index' collection='list' open='(' separator=',' close=')'>" +
+            "#{ids}",
+            "</foreach>",
+            "</script>"})
+    List<Curriculum> getCurriculumByIds(List<Integer> ids);
 }

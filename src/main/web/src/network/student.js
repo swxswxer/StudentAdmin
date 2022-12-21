@@ -44,7 +44,7 @@ export function updateStudentInfo(studentData) {
         method: 'post',
         data: studentData,
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
         },
     })
 }

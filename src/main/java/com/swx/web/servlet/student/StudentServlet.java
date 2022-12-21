@@ -1,6 +1,7 @@
 package com.swx.web.servlet.student;
 
 import com.alibaba.fastjson.JSON;
+import com.swx.pojo.Curriculum;
 import com.swx.pojo.Student;
 import com.swx.util.StudentUtil;
 import com.swx.service.ServiceInterface.StudentService;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,14 +41,13 @@ public class StudentServlet extends BaseServlet {
     }
 
     public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
         StudentUtil studentUtil = new StudentUtil();
         ResponseMsgUtil responseMsgUtil = new ResponseMsgUtil();
-
         BufferedReader br = req.getReader();
         String params = br.readLine();
-        System.out.println(params);
+        params = URLDecoder.decode(params,"UTF-8");
         Student student = studentUtil.ParseStudentParams(params);
-        System.out.println(student);
         Student oldData = studentService.selectById(student.getStudentid());
         if (oldData == null) {
             //调用service
@@ -83,6 +86,8 @@ public class StudentServlet extends BaseServlet {
         StudentUtil studentUtil = new StudentUtil();
         BufferedReader br = req.getReader();
         String params = br.readLine();
+        params = URLDecoder.decode(params,"UTF-8");
+        System.out.println(params);
         //转化为student对象
         Student student = studentUtil.ParseStudentParams(params);
         Student oldData = studentService.selectById(student.getStudentid());
@@ -157,6 +162,17 @@ public class StudentServlet extends BaseServlet {
         resp.getWriter().write(jsonString);
     }
 
+    public void selectStudentAllCurriculum(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        ResponseMsgUtil responseMsgUtil = new ResponseMsgUtil();
+        String studentid = req.getParameter("studentid");
+        List<Curriculum> studentCurriculum = studentService.getCurriculumByIds(studentService.getStudentCurriculumList(Integer.parseInt(studentid)));
 
+        responseMsgUtil.add("data",studentCurriculum);
+        responseMsgUtil.add("status",true);
+
+        String jsonString = responseMsgUtil.getString();
+        resp.setContentType("text/json;charset=utf-8");
+        resp.getWriter().write(jsonString);
+    }
 
 }
