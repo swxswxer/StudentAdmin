@@ -28,12 +28,15 @@
 </template>
 
 <script>
-import {updateStudentInfo} from "@/network/student";
+import {addStudentInfo, updateStudentInfo} from "@/network/student";
 import {Message} from "element-ui";
 import {getAllClass} from "@/network/classes";
 
 export default {
   name: "StudentInfoEdit",
+  props:{
+    type: String
+  },
   data() {
     return {
       hasSubmit: false,
@@ -66,15 +69,28 @@ export default {
   },
   methods: {
     onSubmit() {
-      updateStudentInfo(this.formData).then(res => {
-        if (res.success === true) {
-          Message.success("提交成功")
-          this.hasSubmit = true
-          this.$emit("stuInfoEditCallBack", this.formData)
-        } else {
-          Message.warning(res.message)
-        }
-      })
+      console.log(this.type)
+      if (this.type === "add") {
+        addStudentInfo(this.formData).then(res => {
+          if (res.success === true) {
+            Message.success("提交成功")
+            this.hasSubmit = true
+            this.$emit("stuInfoAddCallBack", this.formData)
+          } else {
+            Message.warning(res.message)
+          }
+        })
+      } else {
+        updateStudentInfo(this.formData).then(res => {
+          if (res.success === true) {
+            Message.success("提交成功")
+            this.hasSubmit = true
+            this.$emit("stuInfoEditCallBack", this.formData)
+          } else {
+            Message.warning(res.message)
+          }
+        })
+      }
     },
   }
 }

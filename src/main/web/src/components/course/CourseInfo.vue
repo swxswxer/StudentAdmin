@@ -1,5 +1,12 @@
 <template>
   <div id="courseInfo" class="courseInfo">
+    <div id="tableHeader" class="tableHeader">
+      <el-row type="flex" justify="start" align="middle" :gutter="5" style="height: 100%; margin-left: 10px">
+        <el-col :span="3" :push="11" style="margin-left: 15px">
+          <el-button type="primary" size="medium" @click="addCourseClick">添加课程</el-button>
+        </el-col>
+      </el-row>
+    </div>
     <div class="table">
       <el-table
           stripe
@@ -50,7 +57,10 @@
     </div>
     <el-dialog ref="dialog" title="编辑课程信息" :visible.sync="dialogVisible" width="30%"
                :before-close="beforeDialClose" destroy-on-close>
-      <course-info-edit ref="courseEdit" @stuInfoEditCallBack="editCallBack"/>
+      <course-info-edit ref="courseEdit" type="add"/>
+    </el-dialog>
+    <el-dialog ref="addDialog" title="添加课程信息" :visible.sync="addDialogVisible" width="30%" destroy-on-close>
+      <course-info-edit ref="courseAdd" @stuInfoEditCallBack="addCallBack" type="add"/>
     </el-dialog>
   </div>
 
@@ -72,6 +82,7 @@ export default {
   extends: Dialog,
   data() {
     return {
+      addDialogVisible: false,
       dialogVisible: false,
       tableLoading: false,
       showHeader: true,
@@ -98,6 +109,9 @@ export default {
     })
   },
   methods: {
+    addCourseClick() {
+      this.addDialogVisible = true
+    },
     beforeDialClose(done) {
       const hasSubmit = this.$refs.courseEdit.hasSubmit
       if (!hasSubmit) {
@@ -108,9 +122,8 @@ export default {
       }
       done()
     },
-    editCallBack(item) {
-      this.tableData[this.selectIndex] = item;
-      console.log(this.tableData)
+    addCallBack(item) {
+      this.tableData.push(item)
     },
     addLoadingToResp() {
       for (let idx = 0; idx < this.tableData.length; idx++) {
@@ -144,5 +157,12 @@ export default {
 .courseInfo {
   height: 100%;
   width: calc(100% - 5px);
+}
+
+
+.tableHeader {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #EBEEF5;
 }
 </style>

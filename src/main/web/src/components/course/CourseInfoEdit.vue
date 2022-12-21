@@ -22,10 +22,13 @@
 
 <script>
 import {Message} from "element-ui";
-import {updateCourse} from "@/network/course";
+import {addCourse, updateCourse} from "@/network/course";
 
 export default {
   name: "CourseInfoEdit",
+  props: {
+    type: String
+  },
   data() {
     return {
       hasSubmit: false,
@@ -40,15 +43,27 @@ export default {
   },
   methods: {
     onSubmit() {
-      updateCourse(this.formData).then(res => {
-        if (res.success === true) {
-          Message.success("提交成功")
-          this.hasSubmit = true
-          this.$emit("courseInfoEditCallBack", this.formData)
-        } else {
-          Message.warning(res.message)
-        }
-      })
+      if (this.type === 'add') {
+        addCourse(this.formData).then(res => {
+          if (res.success === true) {
+            Message.success("提交成功")
+            this.hasSubmit = true
+            this.$emit("courseInfoAddCallBack", this.formData)
+          } else {
+            Message.warning(res.message)
+          }
+        })
+      } else {
+        updateCourse(this.formData).then(res => {
+          if (res.success === true) {
+            Message.success("提交成功")
+            this.hasSubmit = true
+            this.$emit("courseInfoEditCallBack", this.formData)
+          } else {
+            Message.warning(res.message)
+          }
+        })
+      }
     },
   }
 }

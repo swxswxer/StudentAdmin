@@ -11,6 +11,9 @@
         <el-col :span="3" :pull="1" style="margin-left: 15px">
           <el-button type="primary" size="medium" @click="searchClick" :loading="searchLoading">查询</el-button>
         </el-col>
+        <el-col :span="3" :push="11" style="margin-left: 15px">
+          <el-button type="primary" size="medium" @click="addStuClick">添加学生</el-button>
+        </el-col>
       </el-row>
     </div>
     <div class="table">
@@ -71,8 +74,12 @@
         </el-table-column>
       </el-table>
     </div>
-    <el-dialog ref="dialog" title="编辑学生信息" :visible.sync="dialogVisible" width="30%" :before-close="beforeDialClose" destroy-on-close>
-      <student-info-edit ref="stuEdit" @stuInfoEditCallBack="editCallBack"/>
+    <el-dialog ref="dialog" title="编辑学生信息" :visible.sync="dialogVisible" width="30%"
+               :before-close="beforeDialClose" destroy-on-close>
+      <student-info-edit ref="stuEdit" type="update"/>
+    </el-dialog>
+    <el-dialog ref="addDialog" title="添加学生信息" :visible.sync="addDialogVisible" width="30%" destroy-on-close>
+      <student-info-edit ref="stuAdd" @stuInfoEditCallBack="addCallBack" type="add"/>
     </el-dialog>
   </div>
 </template>
@@ -93,6 +100,7 @@ export default {
   extends: Dialog,
   data() {
     return {
+      addDialogVisible: false,
       dialogVisible: false,
       tableLoading: false,
       showHeader: false,
@@ -137,9 +145,8 @@ export default {
       }
       done()
     },
-    editCallBack(item) {
-      this.tableData[this.selectIndex] = item;
-      console.log(this.tableData)
+    addCallBack(item) {
+      this.tableData.push(item)
     },
     addLoadingToResp() {
       for (let idx = 0; idx < this.tableData.length; idx++) {
@@ -163,6 +170,9 @@ export default {
         row.loading = false
         this.tableData.splice(index, 1)
       })
+    },
+    addStuClick(){
+      this.addDialogVisible = true;
     },
     searchClick() {
       this.searchLoading = true

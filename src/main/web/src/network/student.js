@@ -61,6 +61,17 @@ export function updateStudentInfo(studentData) {
     })
 }
 
+export function addStudentInfo(studentData) {
+    return request({
+        url: process.env.VUE_APP_STUDENT_ADD,
+        method: 'post',
+        data: studentData,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
+    })
+}
+
 export function studentAddCourse(studentId, courseIds) {
     return request({
         url: process.env.VUE_APP_STU_ADD_COURSE,
