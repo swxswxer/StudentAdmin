@@ -1,30 +1,29 @@
 <template>
-  <div class="stuEditForm">
-    <el-form :model="formData" label-position="right" label-width="80px">
-      <el-form-item label="学生姓名">
-        <el-input class="formInput" v-model="formData.name"></el-input>
-      </el-form-item>
-      <el-form-item label="年龄">
-        <el-input v-model="formData.age"></el-input>
-      </el-form-item>
-      <el-form-item label="性别">
-        <el-select v-model="formData.sex" placeholder="请选择性别" class="formInput">
-          <el-option value="男"></el-option>
-          <el-option value="女"></el-option>
-        </el-select>
-      </el-form-item>
+  <div class="stuInfoModify">
+    <div class="stuEditForm">
+      <el-form :model="formData" label-position="right" label-width="80px">
+        <el-form-item label="学生姓名">
+          <el-input class="formInput" v-model="formData.name"></el-input>
+        </el-form-item>
+        <el-form-item label="年龄">
+          <el-input v-model="formData.age"></el-input>
+        </el-form-item>
+        <el-form-item label="性别">
+          <el-select v-model="formData.sex" placeholder="请选择性别" class="formInput">
+            <el-option value="男"></el-option>
+            <el-option value="女"></el-option>
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="专业班级">
-        <el-select v-model="formData.major" placeholder="请选择活动专业" class="formInput">
-          <el-option v-for="(major) in this.majorData" :key="major.value"
-                     :value="major.value"></el-option>
-        </el-select>
-      </el-form-item>
-
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">提交</el-button>
-      </el-form-item>
-    </el-form>
+        <el-form-item label="专业班级">
+          <el-select v-model="formData.major" placeholder="请选择活动专业" class="formInput">
+            <el-option v-for="(major) in this.majorData" :key="major.value"
+                       :value="major.value"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <el-button type="primary" @click="onSubmit" style="width: 150px">提交</el-button>
+    </div>
   </div>
 </template>
 
@@ -82,8 +81,13 @@ export default {
 </script>
 
 <style scoped>
+.stuInfoModify {
+  display: flex;
+  flex-direction: column;
+}
+
 .stuEditForm {
-  width: 80%;
+  margin: 0 auto;
 }
 
 .formInput {

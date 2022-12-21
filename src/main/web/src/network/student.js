@@ -4,7 +4,10 @@ import {request} from "./requests"
 export function getStudentInfo() {
     return request({
         url: process.env.VUE_APP_STUDENT_QUERY_ALL,
-        method: 'get'
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
     })
 }
 
@@ -14,7 +17,10 @@ export function getStudentInfoByName(name) {
         method: 'get',
         params: {
             'name': name
-        }
+        },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
     })
 }
 
@@ -24,7 +30,10 @@ export function getStudentInfoByMajor(major) {
         method: 'get',
         params: {
             'major': major
-        }
+        },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
     })
 }
 
@@ -34,7 +43,10 @@ export function delectStudentById(studentId) {
         method: 'get',
         params: {
             'student_id': studentId
-        }
+        },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
     })
 }
 
