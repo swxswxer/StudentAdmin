@@ -71,7 +71,7 @@
         </el-table-column>
       </el-table>
     </div>
-    <el-dialog ref="dialog" title="编辑学生信息" :visible.sync="dialogVisible" width="30%">
+    <el-dialog ref="dialog" title="编辑学生信息" :visible.sync="dialogVisible" width="30%" :before-close="beforeDialClose" destroy-on-close>
       <student-info-edit ref="stuEdit" @stuInfoEditCallBack="editCallBack"/>
     </el-dialog>
   </div>
@@ -97,6 +97,8 @@ export default {
       tableLoading: false,
       showHeader: false,
       searchLoading: false,
+
+      originSelectData: {},
       selectIndex: -1,
       nameInput: '',
       majorInput: '',
@@ -146,6 +148,17 @@ export default {
     })
   },
   methods: {
+    beforeDialClose(done) {
+      const hasSubmit = this.$refs.stuEdit.hasSubmit
+      if (!hasSubmit) {
+        this.$refs.stuEdit.formData.studentid = this.originSelectData.studentid
+        this.$refs.stuEdit.formData.name = this.originSelectData.name
+        this.$refs.stuEdit.formData.age = this.originSelectData.age
+        this.$refs.stuEdit.formData.major = this.originSelectData.major
+        this.$refs.stuEdit.formData.sex = this.originSelectData.sex
+      }
+      done()
+    },
     editCallBack(item) {
       this.tableData[this.selectIndex] = item;
       console.log(this.tableData)
@@ -157,6 +170,7 @@ export default {
     },
     handleEdit(index, row) {
       this.selectIndex = index;
+      Object.assign(this.originSelectData, row)
       this.$refs.stuEdit.formData = row;
       this.dialogVisible = true;
     },

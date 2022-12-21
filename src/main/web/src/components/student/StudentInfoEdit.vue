@@ -37,6 +37,7 @@ export default {
   name: "StudentInfoEdit",
   data() {
     return {
+      hasSubmit: false,
       majorData: [],
       formData: {
         studentid: '',
@@ -64,19 +65,17 @@ export default {
       }
     })
   },
-  props: {
-    stuInfo: Object
-  },
   methods: {
     onSubmit() {
       updateStudentInfo(this.formData).then(res => {
         if (res.success === true) {
           Message.success("提交成功")
+          this.hasSubmit = true
+          this.$emit("stuInfoEditCallBack", this.formData)
         } else {
           Message.warning(res.message)
         }
       })
-      this.$emit("stuInfoEditCallBack", this.formData)
     },
   }
 }
