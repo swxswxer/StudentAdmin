@@ -1,0 +1,14 @@
+{
+  "student_info": {
+    "status": true,
+    "data": [
+      {
+        "studentid": 123456,
+        "name": "yong1",
+        "age": 18,
+        "sex": "男",
+        "major": "软件工程"
+      }
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "student_info": {
+    "status": true,
+    "data": [
+      {
+        "studentid": 123456,
+        "name": "yong1",
+        "age": 18,
+        "sex": "男",
+        "major": "软件工程"
+      },
+      {
+        "studentid": 123457,
+        "name": "yong2",
+        "age": 19,
+        "sex": "男",
+        "major": "软件工程"
+      },
+      {
+        "studentid": 123458,
+        "name": "yong3",
+        "age": 20,
+        "sex": "男",
+        "major": "软件工程"
+      },
+      {
+        "studentid": 123459,
+        "name": "yong4",
+        "age": 20,
+        "sex": "男",
+        "major": "软件工程"
+      },
+      {
+        "studentid": 123460,
+        "name": "yong5",
+        "age": 20,
+        "sex": "男",
+        "major": "软件工程"
+      },
+      {
+        "studentid": 123461,
+        "name": "yong6",
+        "age": 20,
+        "sex": "男",
+        "major": "软件工程"
+      },
+      {
+        "studentid": 123462,
+        "name": "yong7",
+        "age": 20,
+        "sex": "男",
+        "major": "软件工程"
+      },
+      {
+        "studentid": 123463,
+        "name": "yong8",
+        "age": 20,
+        "sex": "男",
+        "major": "软件工程"
+      },
+      {
+        "studentid": 123464,
+        "name": "yong9",
+        "age": 20,
+        "sex": "男",
+        "major": "软件工程"
+      }
+    ]
+  }
+}
