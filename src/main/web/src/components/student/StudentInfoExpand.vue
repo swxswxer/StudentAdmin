@@ -23,7 +23,7 @@
               <el-descriptions-item label="修读总学分">{{ courseScores }}</el-descriptions-item>
             </el-descriptions>
             <div class="courseModify">
-              <el-button type="primary" @click="modifyCourseClick">提交</el-button>
+              <el-button type="primary" @click="modifyCourseClick">修改课程信息</el-button>
             </div>
           </div>
         </el-col>

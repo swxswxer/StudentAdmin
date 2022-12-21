@@ -22,7 +22,7 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">创建</el-button>
+        <el-button type="primary" @click="onSubmit">提交</el-button>
       </el-form-item>
     </el-form>
   </div>
