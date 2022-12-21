@@ -23,17 +23,13 @@
     </el-aside>
     <el-container>
       <el-header class="header">
-        <el-row class="headerRow" type="flex" justify="center">
-          <el-col :span="2" :offset="22">
-            <div class="userModule">
-              <div class="userAvatar center">
-                <el-avatar size="medium"
-                           src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
-              </div>
-              <span class="userName center">Yong</span>
-            </div>
-          </el-col>
-        </el-row>
+        <div class="userModule">
+          <div class="userAvatar center">
+            <el-avatar size="medium"
+                       src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
+          </div>
+          <span class="userName center">{{ username }}</span>
+        </div>
       </el-header>
       <el-main class="homeMain">
         <keep-alive>
@@ -51,13 +47,16 @@ export default {
   name: "HomePage",
   data() {
     return {
+      username: '',
       isRouter: true,
       activeIndex: '/home/student_info',
     }
   },
   created() {
+    this.username = sessionStorage.getItem("username");
     if (this.$route.fullPath === '/home') {
-      this.$router.push(this.activeIndex).catch(() => {})
+      this.$router.push(this.activeIndex).catch(() => {
+      })
       this.$router.replace(this.activeIndex)
     }
   },
@@ -86,17 +85,17 @@ export default {
   border-radius: 10px;
   margin: 7px 10px 0 10px;
   background-color: white;
+  display: flex;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
-}
-
-.headerRow {
-  height: 100%
 }
 
 .userModule {
   width: 100%;
   height: 100%;
+  margin-right: 20px;
   display: flex;
+  align-content: center;
+  justify-content: end;
 }
 
 .center {

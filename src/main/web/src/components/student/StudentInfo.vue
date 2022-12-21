@@ -79,8 +79,8 @@
 
 <script>
 import {delectStudentById, getStudentInfo, getStudentInfoByMajor, getStudentInfoByName} from "@/network/student";
-import StudentInfoExpand from "@/components/home/StudentInfoExpand";
-import StudentInfoEdit from "@/components/home/StudentInfoEdit";
+import StudentInfoExpand from "@/components/student/StudentInfoExpand";
+import StudentInfoEdit from "@/components/student/StudentInfoEdit";
 import {Message} from "element-ui";
 
 
