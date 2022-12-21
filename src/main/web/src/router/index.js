@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 const Login = () => import('components/LoginPage')
 const HomePage = () => import('components/home/HomePage')
-const StudentInfoPage = () => import('components/home/StudentInfo')
+const StudentInfoPage = () => import('components/student/StudentInfo')
 
 
 const routes = [

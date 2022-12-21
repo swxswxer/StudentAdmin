@@ -12,17 +12,25 @@
       </div>
       <br/>
     </div>
+    <el-dialog title="注册" :visible.sync="dialogVisible" width="30%">
+      <register-page/>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import {login} from "@/network/login";
 import {Message} from "element-ui";
+import RegisterPage from "@/components/RegisterPage";
 
 export default {
   name: "LoginPage",
+  components: {
+    RegisterPage
+  },
   data() {
     return {
+      dialogVisible: false,
       usrInput: '',
       pwdInput: ''
     }
@@ -44,7 +52,8 @@ export default {
           console.log(res);
           loading.close()
           if (res.success === true) {
-            this.$router.push('/home').catch(()=>{})
+            sessionStorage.setItem("username", this.usrInput);
+            this.$router.push('/home').catch(() => {})
             this.$router.replace('/home')
           }
         })
@@ -52,6 +61,7 @@ export default {
     },
     registerFunc() {
       console.log("register")
+      this.dialogVisible = true
     }
   }
 };

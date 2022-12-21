@@ -8,7 +8,7 @@
         <el-col :span="3">
           <el-input v-model="majorInput" placeholder="请输入专业"></el-input>
         </el-col>
-        <el-col :span="3" :pull="1" style="margin-left: 10px">
+        <el-col :span="3" :pull="1" style="margin-left: 15px">
           <el-button type="primary" size="medium" @click="searchClick" :loading="searchLoading">查询</el-button>
         </el-col>
       </el-row>
@@ -71,17 +71,17 @@
         </el-table-column>
       </el-table>
     </div>
-    <el-dialog title="编辑学生信息" :visible.sync="dialogVisible" width="30%">
-      <student-info-edit :stu-info="selectEditStuInfo"/>
+    <el-dialog ref="dialog" title="编辑学生信息" :visible.sync="dialogVisible" width="30%" :before-close="beforeDialClose" destroy-on-close>
+      <student-info-edit ref="stuEdit" @stuInfoEditCallBack="editCallBack"/>
     </el-dialog>
   </div>
 </template>
 
 <script>
 import {delectStudentById, getStudentInfo, getStudentInfoByMajor, getStudentInfoByName} from "@/network/student";
-import StudentInfoExpand from "@/components/home/StudentInfoExpand";
-import StudentInfoEdit from "@/components/home/StudentInfoEdit";
-import {Message} from "element-ui";
+import StudentInfoExpand from "@/components/student/StudentInfoExpand";
+import StudentInfoEdit from "@/components/student/StudentInfoEdit";
+import {Dialog, Message} from "element-ui";
 
 
 export default {
@@ -90,40 +90,46 @@ export default {
     StudentInfoExpand,
     StudentInfoEdit
   },
+  extends: Dialog,
   data() {
     return {
       dialogVisible: false,
       tableLoading: false,
       showHeader: false,
       searchLoading: false,
-      selectEditStuInfo: {},
+
+      originSelectData: {},
+      selectIndex: -1,
       nameInput: '',
       majorInput: '',
       tableHeight: 0,
       tableData: [
         {
           studentid: 123456,
-          name: 'yong',
+          name: 'yong1',
           age: 18,
           sex: '男',
           major: '软件工程'
         },
         {
-          studentid: 123456,
-          name: 'yong',
-          age: 18,
+          studentid: 123457,
+          name: 'yong2',
+          age: 19,
           sex: '男',
           major: '软件工程'
         },
         {
-          studentid: 123456,
-          name: 'yong',
-          age: 18,
+          studentid: 123458,
+          name: 'yong3',
+          age: 20,
           sex: '男',
           major: '软件工程'
         },
       ],
     }
+  },
+  mounted() {
+    this.$refs.dialog.rendered = true
   },
   created() {
     console.log("table length: " + this.tableData.length)
@@ -142,18 +148,33 @@ export default {
     })
   },
   methods: {
+    beforeDialClose(done) {
+      const hasSubmit = this.$refs.stuEdit.hasSubmit
+      if (!hasSubmit) {
+        this.$refs.stuEdit.formData.studentid = this.originSelectData.studentid
+        this.$refs.stuEdit.formData.name = this.originSelectData.name
+        this.$refs.stuEdit.formData.age = this.originSelectData.age
+        this.$refs.stuEdit.formData.major = this.originSelectData.major
+        this.$refs.stuEdit.formData.sex = this.originSelectData.sex
+      }
+      done()
+    },
+    editCallBack(item) {
+      this.tableData[this.selectIndex] = item;
+      console.log(this.tableData)
+    },
     addLoadingToResp() {
       for (let idx = 0; idx < this.tableData.length; idx++) {
         this.$set(this.tableData[idx], 'loading', false)
       }
     },
     handleEdit(index, row) {
-      console.log("edit index: " + index + " row: " + row)
-      this.selectEditStuInfo = row
+      this.selectIndex = index;
+      Object.assign(this.originSelectData, row)
+      this.$refs.stuEdit.formData = row;
       this.dialogVisible = true;
     },
     handleDelete(index, row) {
-      console.log("delete index: " + index)
       row.loading = true
       delectStudentById(row.studentid).then(res => {
         if (res.success !== true) {
@@ -166,7 +187,6 @@ export default {
       })
     },
     searchClick() {
-      console.log("name: " + this.nameInput + " major: " + this.majorInput)
       this.searchLoading = true
 
       if (this.nameInput !== '') {
