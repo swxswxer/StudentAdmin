@@ -1,0 +1,35 @@
+{
+  "success": {
+    "data": [
+      {
+        "id": 1,
+        "name": "计算机网络",
+        "credit": 4,
+        "time": "18周"
+      },
+      {
+        "id": 3333,
+        "name": "web 程序设计",
+        "credit": 3,
+        "time": "8周"
+      },
+      {
+        "id": 2222,
+        "name": "python 程序设计",
+        "credit": 2,
+        "time": "8周"
+      },
+      {
+        "id": 1111,
+        "name": "golang 程序设计",
+        "credit": 1,
+        "time": "12周"
+      }
+    ],
+    "status": true
+  },
+  "error": {
+    "status": false,
+    "message": "stuId not exists"
+  }
+}

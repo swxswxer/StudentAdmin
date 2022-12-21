@@ -82,7 +82,7 @@ export function queryStudentCourse(studentId) {
         url: process.env.VUE_APP_QUERY_STU_COURSE,
         method: 'get',
         params: {
-            student_id: studentId,
+            studentid: studentId,
         },
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

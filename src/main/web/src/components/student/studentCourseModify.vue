@@ -13,6 +13,9 @@
 </template>
 
 <script>
+import {Message} from "element-ui";
+import {getAllCourse} from "@/network/course";
+
 export default {
   name: "studentCourseModify",
   props: {
@@ -22,16 +25,7 @@ export default {
   },
   data() {
     return {
-      allCourse: [
-        {
-          courseId: 123456,
-          name: 'java程序设计'
-        },
-        {
-          courseId: 123457,
-          name: 'web程序设计'
-        },
-      ],
+      allCourse: [],
       modifyLoading: false,
       transferData: [],
       selectValue: []
@@ -44,31 +38,38 @@ export default {
   },
   created() {
     // TODO get all course
-
   },
   beforeMount() {
-    let hasSelectCourse = {};
-    for (let course of this.selectCourse) {
-      hasSelectCourse[course.courseId] = course;
-    }
-    console.log(hasSelectCourse)
-    let transData = []
-    for (let course of this.allCourse) {
-      const courseId = course.courseId
+    getAllCourse().then(res => {
+      if (res.status === true) {
+        this.allCourse = res.data
+        console.log(this.allCourse)
+        let hasSelectCourse = {};
+        for (let course of this.selectCourse) {
+          hasSelectCourse[course.id] = course;
+        }
+        console.log(hasSelectCourse)
+        let transData = []
+        for (let course of this.allCourse) {
+          const courseId = course.id
 
-      if (hasSelectCourse[courseId] !== undefined) {
-        this.selectValue.push(courseId)
-      }
-      transData.push(
-          {
-            key: courseId,
-            label: course.name,
-            disabled: false,
+          if (hasSelectCourse[courseId] !== undefined) {
+            this.selectValue.push(courseId)
           }
-      )
-    }
-    this.transferData = transData
-    console.log(transData)
+          transData.push(
+              {
+                key: courseId,
+                label: course.name,
+                disabled: false,
+              }
+          )
+        }
+        this.transferData = transData
+        console.log(transData)
+      } else {
+        Message.warning(`查询信息错误: ${res.message}`)
+      }
+    })
   }
 }
 </script>

@@ -19,7 +19,6 @@ app.all('*', function(req, res, next) {
     else  next();
 });
 
-router.use("/student", require("./student"))
 app.use("/stu-admin", router)
 app.post("/stu-admin/login", function (req, res) {
     let logInData = req.body
@@ -31,6 +30,9 @@ app.post("/stu-admin/login", function (req, res) {
         res.json(mock.mock(mockLogin.error_op))
     }
 })
+
+router.use("/student", require("./student"))
+router.use("/curriculum", require("./course"))
 
 app.listen(8081, function () {
     console.log("mock server start!")

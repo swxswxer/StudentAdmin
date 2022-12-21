@@ -6,6 +6,18 @@ let studentAll = require('./mock_student_all.json')
 let studentByName = require('./mock_student_select_by_name.json')
 let studentByMajor = require('./mock_student_select_by_major.json')
 let studentDelete = require('./mock_delect_by_Id.json')
+let studentCourse = require("./mock_student_course.json")
+
+router.get('/selectStudentAllCurriculum', function (req, res) {
+    let stuId = req.query.studentid
+    console.log(stuId)
+    console.log(`stuId: ${stuId}`)
+    if (stuId % 2 === 0) {
+        res.json(mock.mock(studentCourse.success))
+    } else {
+        res.json(mock.mock(studentCourse.error))
+    }
+})
 
 router.get('/selectAll', function (req, res) {
     res.json(mock.mock(studentAll.student_info))

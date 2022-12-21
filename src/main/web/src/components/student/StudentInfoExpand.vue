@@ -10,10 +10,10 @@
               :show-header="false"
               v-loading="tableLoading"
               :data="tableData">
-            <el-table-column prop="courseId" label="课程id"/>
-            <el-table-column prop="courseName" label="课程名字"/>
-            <el-table-column prop="courseScore" label="学分"/>
-            <el-table-column prop="courseTime" label="时长"/>
+            <el-table-column prop="id" label="课程id"/>
+            <el-table-column prop="name" label="课程名字"/>
+            <el-table-column prop="credit" label="学分"/>
+            <el-table-column prop="time" label="时长"/>
           </el-table>
         </el-col>
         <el-col :span="12">
@@ -37,6 +37,8 @@
 
 <script>
 import studentCourseModify from "@/components/student/studentCourseModify";
+import {queryStudentCourse} from "@/network/student";
+import {Message} from "element-ui";
 
 export default {
   name: "StudentInfoExpand",
@@ -49,56 +51,7 @@ export default {
       tableLoading: false,
       courseTotal: 0,
       courseScores: 0,
-      tableData: [
-        {
-          courseId: 123456,
-          courseName: "java 程序设计",
-          courseScore: 4,
-          courseTime: "8周"
-        },
-        {
-          courseId: 123456,
-          courseName: "java 程序设计",
-          courseScore: 4,
-          courseTime: "8周"
-        },
-        {
-          courseId: 123456,
-          courseName: "java 程序设计",
-          courseScore: 4,
-          courseTime: "8周"
-        },
-        {
-          courseId: 123456,
-          courseName: "java 程序设计",
-          courseScore: 4,
-          courseTime: "8周"
-        },
-        {
-          courseId: 123456,
-          courseName: "java 程序设计",
-          courseScore: 4,
-          courseTime: "8周"
-        },
-        {
-          courseId: 123456,
-          courseName: "java 程序设计",
-          courseScore: 4,
-          courseTime: "8周"
-        },
-        {
-          courseId: 123456,
-          courseName: "java 程序设计",
-          courseScore: 4,
-          courseTime: "8周"
-        },
-        {
-          courseId: 123456,
-          courseName: "java 程序设计",
-          courseScore: 4,
-          courseTime: "8周"
-        },
-      ]
+      tableData: []
     }
   },
   props: {
@@ -107,8 +60,25 @@ export default {
   },
   created() {
     console.log("expand name: " + this.stuName + " id: " + this.stuId)
-    // TODO get student course info
-    // this.tableLoading = true
+    this.tableLoading = true
+    queryStudentCourse(this.stuId).then(res => {
+      if (res.status === true) {
+        this.tableData = res.data
+        this.courseTotal = this.tableData.length
+
+        let totalCredit = 0;
+        for (let course of this.tableData) {
+          totalCredit += course.credit
+        }
+        this.courseScores = totalCredit
+      } else {
+        Message.warning(res.message)
+        this.courseTotal = 0;
+        this.courseScores = 0;
+      }
+    }).then(() => {
+      this.tableLoading = false
+    })
   },
   methods: {
     modifyCourseClick() {
