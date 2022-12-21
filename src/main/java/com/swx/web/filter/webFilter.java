@@ -27,6 +27,8 @@ public class webFilter implements Filter {
             }
         }
         //没有登陆 跳转到登陆页面
+
+        System.out.println("test");
         req.getRequestDispatcher("/").forward(servletRequest, servletResponse);
 
     }

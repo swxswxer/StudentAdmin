@@ -165,10 +165,18 @@ public class StudentServlet extends BaseServlet {
     public void selectStudentAllCurriculum(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         ResponseMsgUtil responseMsgUtil = new ResponseMsgUtil();
         String studentid = req.getParameter("studentid");
-        List<Curriculum> studentCurriculum = studentService.getCurriculumByIds(studentService.getStudentCurriculumList(Integer.parseInt(studentid)));
+        Student student = studentService.selectById(Integer.parseInt(studentid));
 
-        responseMsgUtil.add("data",studentCurriculum);
-        responseMsgUtil.add("status",true);
+        if(student!=null){
+            List<Curriculum> studentCurriculum = studentService.getCurriculumByIds(studentService.getStudentCurriculumList(Integer.parseInt(studentid)));
+            responseMsgUtil.add("data",studentCurriculum);
+            responseMsgUtil.add("status",true);
+        }else {
+            responseMsgUtil.add("status",false);
+            responseMsgUtil.add("message","没有id为"+studentid+"的学生");
+        }
+
+
 
         String jsonString = responseMsgUtil.getString();
         resp.setContentType("text/json;charset=utf-8");
