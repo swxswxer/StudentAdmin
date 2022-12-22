@@ -33,6 +33,7 @@ app.post("/stu-admin/login", function (req, res) {
 
 router.use("/student", require("./student"))
 router.use("/curriculum", require("./course"))
+router.use("/clazz", require("./classes"))
 
 app.listen(8081, function () {
     console.log("mock server start!")

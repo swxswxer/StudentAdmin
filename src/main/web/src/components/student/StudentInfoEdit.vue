@@ -22,7 +22,7 @@
           </el-select>
         </el-form-item>
       </el-form>
-      <el-button type="primary" @click="onSubmit" style="width: 150px">提交</el-button>
+      <el-button type="primary" @click="onSubmit" style="width: 150px" :loading="submitLoading">提交</el-button>
     </div>
   </div>
 </template>
@@ -39,6 +39,7 @@ export default {
   },
   data() {
     return {
+      submitLoading: false,
       hasSubmit: false,
       majorData: [],
       formData: {
@@ -70,6 +71,7 @@ export default {
   methods: {
     onSubmit() {
       console.log(this.type)
+      this.submitLoading = true
       if (this.type === "add") {
         addStudentInfo(this.formData).then(res => {
           if (res.success === true) {
@@ -79,6 +81,7 @@ export default {
           } else {
             Message.warning(res.message)
           }
+          this.submitLoading = false
         })
       } else {
         updateStudentInfo(this.formData).then(res => {
@@ -89,6 +92,7 @@ export default {
           } else {
             Message.warning(res.message)
           }
+          this.submitLoading = false
         })
       }
     },

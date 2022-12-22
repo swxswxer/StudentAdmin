@@ -76,10 +76,10 @@
     </div>
     <el-dialog ref="dialog" title="编辑学生信息" :visible.sync="dialogVisible" width="30%"
                :before-close="beforeDialClose" destroy-on-close>
-      <student-info-edit ref="stuEdit" type="update"/>
+      <student-info-edit ref="stuEdit" @stuInfoEditCallBack="editCallBack" type="update"/>
     </el-dialog>
     <el-dialog ref="addDialog" title="添加学生信息" :visible.sync="addDialogVisible" width="30%" destroy-on-close>
-      <student-info-edit ref="stuAdd" @stuInfoEditCallBack="addCallBack" type="add"/>
+      <student-info-edit ref="stuAdd" @stuInfoAddCallBack="addCallBack" type="add"/>
     </el-dialog>
   </div>
 </template>
@@ -135,6 +135,7 @@ export default {
   },
   methods: {
     beforeDialClose(done) {
+      console.log(`before close`)
       const hasSubmit = this.$refs.stuEdit.hasSubmit
       if (!hasSubmit) {
         this.$refs.stuEdit.formData.studentid = this.originSelectData.studentid
@@ -145,8 +146,15 @@ export default {
       }
       done()
     },
+    editCallBack(item) {
+      console.log(`edit callback`)
+      console.log(item)
+      this.dialogVisible = false
+    },
     addCallBack(item) {
+      console.log(`add callback`)
       this.tableData.push(item)
+      this.addDialogVisible = false
     },
     addLoadingToResp() {
       for (let idx = 0; idx < this.tableData.length; idx++) {

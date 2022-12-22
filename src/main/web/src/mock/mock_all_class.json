@@ -1,0 +1,13 @@
+{
+  "success": {
+    "status":true,
+    "data": [
+      {"classname": "1班"},
+      {"classname": "2班"},
+      {"classname": "3班"},
+      {"classname": "4班"},
+      {"classname": "5班"},
+      {"classname": "6班"}
+    ]
+  }
+}

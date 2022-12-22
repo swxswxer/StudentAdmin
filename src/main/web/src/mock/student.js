@@ -49,6 +49,9 @@ router.post("/update", function (req, res) {
         res.json(mock.mock(studentDelete.error_op))
     }
 })
+router.post("/add", function (req, res) {
+    res.json(mock.mock({"success": true}))
+})
 
 router.post("/addCurriculum", function (req, res) {
     let stuId = req.body.student_id
